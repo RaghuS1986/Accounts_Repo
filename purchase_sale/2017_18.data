@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Accounts Name="ACCOUNTS">
+<Members>
+<Member Name="NAVEEN">
+<Dates>
+<Date Name="02/09/2017">
+<ItemBought Miscellaneous="50" Name="Carrot" NoOfPockets="10" RatePerKG="10" TotalInKGs="1000" UnloadingCharges="100" Vendor="jtm">
+<ItemsSold>
+<ItemSold AmountBalance="5005200.0" AmountRecMode="" AmountReceived="0" Kilograms="500" Name="Mgs" NumberOfPacks="5" PreviousBalance="5000000" Rate="10" TotalPrice="5200.0" TransportAndMiscExpenses="200" UnderMember="NAVEEN"/>
+</ItemsSold>
+</ItemBought>
+</Date>
+</Dates>
+</Member>
+<Member Name="KIRAN">
+<Dates/>
+</Member>
+<Member Name="GANGAMMA">
+<Dates/>
+</Member>
+<Member Name="RAMAIAH">
+<Dates/>
+</Member>
+</Members>
+</Accounts>
