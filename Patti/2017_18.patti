@@ -3,8 +3,8 @@
 <Members>
 <Member Name="TVR MANDI">
 <Dates>
-<Date Name="03/09/2017">
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="0" RatePerKG="0" TotalInKGs="0" UnloadingCharges="0" Vendor=""/>
+<Date Name="04/09/2017">
+<ItemBought Miscellaneous="100" Name="carrot" NoOfPockets="31" RatePerKG="26" TotalInKGs="2971" UnloadingCharges="310" Vendor="STS"/>
 </Date>
 </Dates>
 </Member>
