@@ -6,6 +6,9 @@
 <Date Name="04/09/2017">
 <ItemBought Miscellaneous="100" Name="carrot" NoOfPockets="31" RatePerKG="26" TotalInKGs="2971" UnloadingCharges="310" Vendor="STS"/>
 </Date>
+<Date Name="06/09/2017">
+<ItemBought Miscellaneous="100" Name="carrot" NoOfPockets="55" RatePerKG="25" TotalInKGs="5263" UnloadingCharges="550" Vendor="JTM"/>
+</Date>
 </Dates>
 </Member>
 </Members>
