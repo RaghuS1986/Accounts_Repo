@@ -264,7 +264,7 @@
 <ItemSold AmountBalance="966442.0" AmountRecMode="ACCOUNT 05/09/2017" AmountReceived="350000" Kilograms="794" Name="MGS" NumberOfPacks="8" PreviousBalance="1295272" Rate="25" TotalPrice="21170.0" TransportAndMiscExpenses="1320" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="215905.0" AmountRecMode="" AmountReceived="0" Kilograms="864" Name="FS" NumberOfPacks="9" PreviousBalance="194170" Rate="25" TotalPrice="21735.0" TransportAndMiscExpenses="135" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="270254.0" AmountRecMode="" AmountReceived="0" Kilograms="676" Name="NG" NumberOfPacks="7" PreviousBalance="0" Rate="25" TotalPrice="18055.0" TransportAndMiscExpenses="1155" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="618494.0" AmountRecMode="" AmountReceived="0" Kilograms="0" Name="TMRK" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="625914.0" AmountRecMode="" AmountReceived="0" Kilograms="283" Name="TMRK" NumberOfPacks="3" PreviousBalance="0" Rate="25" TotalPrice="7420.0" TransportAndMiscExpenses="345" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
