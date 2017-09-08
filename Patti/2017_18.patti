@@ -7,7 +7,10 @@
 <ItemBought Miscellaneous="100" Name="carrot" NoOfPockets="31" RatePerKG="26" TotalInKGs="2971" UnloadingCharges="310" Vendor="STS"/>
 </Date>
 <Date Name="06/09/2017">
-<ItemBought Miscellaneous="100" Name="carrot" NoOfPockets="55" RatePerKG="25" TotalInKGs="5263" UnloadingCharges="550" Vendor="JTM"/>
+<ItemBought Miscellaneous="400" Name="carrot" NoOfPockets="55" RatePerKG="25" TotalInKGs="5263" UnloadingCharges="550" Vendor="JTM"/>
+</Date>
+<Date Name="05/09/2017">
+<ItemBought Miscellaneous="100" Name="carrot" NoOfPockets="30" RatePerKG="26" TotalInKGs="2857" UnloadingCharges="300" Vendor="SGS"/>
 </Date>
 </Dates>
 </Member>
