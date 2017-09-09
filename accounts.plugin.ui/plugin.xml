@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+<extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IProject"
+            id="x.contribution1">
+         <menu
+               label="Accounts"
+               path="additions"
+               id="x.menu1">
+            <separator
+                  name="group1">
+            </separator>
+         </menu>
+         <action
+               label="Create Accounts Data"
+               class="accounts.plugin.ui.actions.CreateAccountData"
+               menubarPath="x.menu1/group1"
+               enablesFor="1"
+               id="x.newAction">
+         </action>
+      </objectContribution>
+   </extension>   
+   <!--extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Accounts"
+            id="accounts.plugin.ui">
+      </category>
+      <view
+            name="SummaryView"
+            icon="icons/sample.gif"
+            category="accounts.plugin.ui"
+            class="accounts.plugin.ui.views.Summary"
+            id="accounts.plugin.ui.views.Summary">
+      </view>
+   </extension-->
+   <!--extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="*">
+         <view
+               ratio="0.25"
+               relative="org.eclipse.ui.views.ProblemView"
+               relationship="left"
+               id="accounts.plugin.ui.views.Summary">
+         </view>
+      </perspectiveExtension>
+   </extension-->
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="accounts.plugin.ui.editors.AccountsEditor"
+            default="true"
+            extensions=".data"
+            id="accounts.plugin.ui.editors.AccountsEditor"
+            name="Accounts">
+         <contentTypeBinding
+               contentTypeId="accounts.plugin.ui.editors.accountsEditor">
+         </contentTypeBinding>
+      </editor>
+      <editor
+            class="accounts.plugin.ui.editors.patti.PattiEditor"
+            default="true"
+            extensions=".patti"
+            id="accounts.plugin.ui.editors.patti.PattiEditor"
+            name="Patti">
+         <contentTypeBinding
+               contentTypeId="accounts.plugin.ui.editors.patti.PattiEditor">
+         </contentTypeBinding>
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            file-extensions="data"
+            file-names="*"
+            id="accounts.plugin.ui.editors.accountsEditor"
+            name="Accounts Editor"
+            priority="normal">
+      </content-type>
+      <content-type
+            file-extensions="patti"
+            file-names="*"
+            id="accounts.plugin.ui.editors.patti.PattiEditor"
+            name="Patti Editor"
+            priority="normal">
+      </content-type>
+   </extension>
+
+</plugin>
