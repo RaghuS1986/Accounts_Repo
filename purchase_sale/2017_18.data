@@ -1249,7 +1249,7 @@
 <ItemSold AmountBalance="95163.0" AmountRecMode="" AmountReceived="0" Kilograms="85" Name="MC" NumberOfPacks="1" PreviousBalance="0" Rate="18" TotalPrice="1540.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="127329.0" AmountRecMode="" AmountReceived="200000" Kilograms="449" Name="NG" NumberOfPacks="5" PreviousBalance="0" Rate="18" TotalPrice="8367.0" TransportAndMiscExpenses="285" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="226434.0" AmountRecMode="" AmountReceived="0" Kilograms="363" Name="FS" NumberOfPacks="4" PreviousBalance="0" Rate="18" TotalPrice="6864.0" TransportAndMiscExpenses="330" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="212323.0" AmountRecMode="" AmountReceived="0" Kilograms="0" Name="HHN" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="219699.0" AmountRecMode="" AmountReceived="0" Kilograms="362" Name="HHN" NumberOfPacks="4" PreviousBalance="0" Rate="18" TotalPrice="7376.0" TransportAndMiscExpenses="860" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
