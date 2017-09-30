@@ -14,6 +14,7 @@ import accounts.plugin.model.classes.ItemBought;
 import accounts.plugin.model.classes.ItemSold;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
+import accounts.plugin.model.classes.Month;
 import accounts.plugin.ui.Utility;
 
 public class AmtRecEditingSupport extends EditingSupport {
@@ -66,18 +67,20 @@ public class AmtRecEditingSupport extends EditingSupport {
 					break;
 				}
 				if (mem.equals(member)) {
-					for (Date date : mem.getDates()) {
-						if (previousItemFound) {
-							break;
-						}
-						for (ItemBought itemsBought : date.getItemsBought()) {
-							for (ItemSold itmSold : itemsBought.getItemsSold()) {
-								if (itmSold.getPersonName().equalsIgnoreCase(itemSold.getPersonName())) {
-									if ((!itmSold.equals(itemSold)) && (!previousItemFound)) {
-										previousItemSold = itmSold;
-									} else {
-										previousItemFound = true;
-										break;
+					for (Month mon : mem.getMonths()) {
+						for (Date date : mon.getDates()) {
+							if (previousItemFound) {
+								break;
+							}
+							for (ItemBought itemsBought : date.getItemsBought()) {
+								for (ItemSold itmSold : itemsBought.getItemsSold()) {
+									if (itmSold.getPersonName().equalsIgnoreCase(itemSold.getPersonName())) {
+										if ((!itmSold.equals(itemSold)) && (!previousItemFound)) {
+											previousItemSold = itmSold;
+										} else {
+											previousItemFound = true;
+											break;
+										}
 									}
 								}
 							}
@@ -96,19 +99,21 @@ public class AmtRecEditingSupport extends EditingSupport {
 			boolean itemFound = false;
 			for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
 				if (mem.equals(member)) {
-					for (Date date : mem.getDates()) {
-						for (ItemBought itemsBought : date.getItemsBought()) {
-							for (ItemSold itmSold : itemsBought.getItemsSold()) {
-								if (itmSold.getPersonName().equalsIgnoreCase(itemSold.getPersonName())) {
-									if (itmSold.equals(itemSold) && !itemFound) {
-										itemFound = true;
-										continue;
-									} else if (itemFound) {
-										itemSolds.add(itmSold);
+					for (Month mon : mem.getMonths()) {
+						for (Date date : mon.getDates()) {
+							for (ItemBought itemsBought : date.getItemsBought()) {
+								for (ItemSold itmSold : itemsBought.getItemsSold()) {
+									if (itmSold.getPersonName().equalsIgnoreCase(itemSold.getPersonName())) {
+										if (itmSold.equals(itemSold) && !itemFound) {
+											itemFound = true;
+											continue;
+										} else if (itemFound) {
+											itemSolds.add(itmSold);
+										}
 									}
 								}
-							}
 
+							}
 						}
 					}
 				}

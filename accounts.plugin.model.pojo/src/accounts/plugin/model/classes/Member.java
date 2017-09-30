@@ -9,12 +9,12 @@ public class Member extends AbstractModel {
 		setName(name);
 	}
 	
-	private List<Date> dates;
+	private List<Month> months;
 
-	public List<Date> getDates() {
-		if (dates == null) {
-			dates = new ArrayList<>();
+	public List<Month> getMonths() {
+		if (months == null) {
+			months = new ArrayList<>();
 		}
-		return dates;
+		return months;
 	}
 }

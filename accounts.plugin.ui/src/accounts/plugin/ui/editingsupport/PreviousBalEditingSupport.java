@@ -12,6 +12,7 @@ import accounts.plugin.model.classes.ItemBought;
 import accounts.plugin.model.classes.ItemSold;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
+import accounts.plugin.model.classes.Month;
 import accounts.plugin.ui.Utility;
 
 public class PreviousBalEditingSupport extends EditingSupport {
@@ -37,23 +38,24 @@ public class PreviousBalEditingSupport extends EditingSupport {
 				}
 			}
 			int counter = 0;
-			for (Date date : mem.getDates()) {
-				if (counter > 0) {
-					break;
-				}
-				for (ItemBought itemsBought : date.getItemsBought()) {
+			for (Month mon : mem.getMonths()) {
+				for (Date date : mon.getDates()) {
 					if (counter > 0) {
 						break;
 					}
-					for (ItemSold itmSold : itemsBought.getItemsSold()) {
-						if (itmSold.getPersonName().equalsIgnoreCase(((ItemSold) arg0).getPersonName())) {
-							counter++;
-							if (itmSold.equals(arg0)) {
+					for (ItemBought itemsBought : date.getItemsBought()) {
+						if (counter > 0) {
+							break;
+						}
+						for (ItemSold itmSold : itemsBought.getItemsSold()) {
+							if (itmSold.getPersonName().equalsIgnoreCase(((ItemSold) arg0).getPersonName())) {
+								counter++;
+								if (itmSold.equals(arg0)) {
+									break;
+								}
+								isFirstEntry = false;
 								break;
 							}
-							isFirstEntry = false;
-
-							break;
 						}
 					}
 				}
@@ -101,25 +103,27 @@ public class PreviousBalEditingSupport extends EditingSupport {
 			boolean isFirstItem = false;
 			for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
 				if (mem.equals(member)) {
-					for (Date date : mem.getDates()) {
-						if (isFirstItem) {
-							break;
-						}
-						for (ItemBought itemsBought : date.getItemsBought()) {
+					for (Month mon : mem.getMonths()) {
+						for (Date date : mon.getDates()) {
 							if (isFirstItem) {
 								break;
 							}
-							for (ItemSold itmSold : itemsBought.getItemsSold()) {
-								if (itmSold.getPersonName().equalsIgnoreCase(soldItem.getPersonName())) {
-									if (!itmSold.equals(soldItem)) {
-										previousItemSold = itmSold;
-									} else {
-										if (previousItemSold != null) {
+							for (ItemBought itemsBought : date.getItemsBought()) {
+								if (isFirstItem) {
+									break;
+								}
+								for (ItemSold itmSold : itemsBought.getItemsSold()) {
+									if (itmSold.getPersonName().equalsIgnoreCase(soldItem.getPersonName())) {
+										if (!itmSold.equals(soldItem)) {
+											previousItemSold = itmSold;
+										} else {
+											if (previousItemSold != null) {
+												break;
+											}
+											isFirstItem = true;
+
 											break;
 										}
-										isFirstItem = true;
-
-										break;
 									}
 								}
 							}
@@ -129,7 +133,7 @@ public class PreviousBalEditingSupport extends EditingSupport {
 			}
 			double balReceived = Utility
 					.converToDouble(previousItemSold != null ? previousItemSold.getAmtBalance() : "0").doubleValue();
-			soldItem.setAmtBalance(totalPrice + traAndMis+preBal - amtReceived + balReceived+"");
+			soldItem.setAmtBalance(totalPrice + traAndMis + preBal - amtReceived + balReceived + "");
 		}
 		getViewer().update(arg0, null);
 	}

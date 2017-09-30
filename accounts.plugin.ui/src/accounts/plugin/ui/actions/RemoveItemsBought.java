@@ -15,6 +15,7 @@ import accounts.plugin.model.classes.Date;
 import accounts.plugin.model.classes.ItemBought;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
+import accounts.plugin.model.classes.Month;
 import accounts.plugin.model.patti.Patti;
 import accounts.plugin.ui.editors.EditorInterface;
 
@@ -48,13 +49,15 @@ public class RemoveItemsBought extends Action {
 					members = model.getMembers();
 				}
 				for (Member mem : members) {
-					for (Date date : mem.getDates()) {
-						Iterator<ItemBought> iterator = date.getItemsBought().iterator();
-						while (iterator.hasNext()) {
-							ItemBought itemBought = (ItemBought) iterator.next();
-							if (firstElement.equals(itemBought)) {
-								iterator.remove();
-								break;
+					for (Month mon : mem.getMonths()) {
+						for (Date date : mon.getDates()) {
+							Iterator<ItemBought> iterator = date.getItemsBought().iterator();
+							while (iterator.hasNext()) {
+								ItemBought itemBought = (ItemBought) iterator.next();
+								if (firstElement.equals(itemBought)) {
+									iterator.remove();
+									break;
+								}
 							}
 						}
 					}

@@ -67,42 +67,39 @@ public class ModelManager {
 				String memberName = XmlDocument.getAttributeValue(memberNode, "Name");
 				Member member = new Member(memberName);
 
+//				Node datesNode = testSetData.getNode(memberNode, "Dates", null);
+//				if (datesNode != null) {
+//					Month month = new Month("September");
+//					member.getMonths().add(month);
+//					loadDates(testSetData, datesNode, month);
+//				} else {
+//					Node monthsNode = testSetData.getNode(memberNode, "Months", null);
+//					for (Node monthNode : XmlDocument.getElements(monthsNode, "Month", null)) {
+//						String monthName = XmlDocument.getAttributeValue(monthNode, "Name");
+//						Month month = new Month(monthName);
+//						member.getMonths().add(month);
+//						datesNode = testSetData.getNode(monthNode, "Dates", null);
+//						loadDates(testSetData, datesNode, month);
+//					}
+//				}
+				
+				Node monthsNode = testSetData.getNode(memberNode, "Months", null);
 				Node datesNode = testSetData.getNode(memberNode, "Dates", null);
-				for (Node dateNode : XmlDocument.getElements(datesNode, "Date", null)) {
-					String dateName = XmlDocument.getAttributeValue(dateNode, "Name");
-					Date date = new Date(dateName);
-					member.getDates().add(date);
-					for (Node itemBoughtNode : XmlDocument.getElements(dateNode, "ItemBought", null)) {
-						String itemName = XmlDocument.getAttributeValue(itemBoughtNode, "Name");
-						String vendorName = XmlDocument.getAttributeValue(itemBoughtNode, "Vendor");
-						String noOfPockets = XmlDocument.getAttributeValue(itemBoughtNode, "NoOfPockets");
-						String totalInKgs = XmlDocument.getAttributeValue(itemBoughtNode, "TotalInKGs");
-						String ratePerKg = XmlDocument.getAttributeValue(itemBoughtNode, "RatePerKG");
-						String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
-						String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode, "UnloadingCharges");
-						ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs, ratePerKg,
-								miss, unloadingCharges);
-						date.getItemsBought().add(itemBought);
-						Node itemsSoldNode = testSetData.getNode(itemBoughtNode, "ItemsSold", null);
-						for (Node itemSoldNode : XmlDocument.getElements(itemsSoldNode, "ItemSold", null)) {
-							String personName = XmlDocument.getAttributeValue(itemSoldNode, "Name");
-							String noOfPacks = XmlDocument.getAttributeValue(itemSoldNode, "NumberOfPacks");
-							String kg = XmlDocument.getAttributeValue(itemSoldNode, "Kilograms");
-							String rate = XmlDocument.getAttributeValue(itemSoldNode, "Rate");
-							String transPortMiscExpense = XmlDocument.getAttributeValue(itemSoldNode,
-									"TransportAndMiscExpenses");
-							String totalPrice = XmlDocument.getAttributeValue(itemSoldNode, "TotalPrice");
-							String previousBalance = XmlDocument.getAttributeValue(itemSoldNode, "PreviousBalance");
-							String amtRec = XmlDocument.getAttributeValue(itemSoldNode, "AmountReceived");
-							String amtbal = XmlDocument.getAttributeValue(itemSoldNode, "AmountBalance");
-							String amtRecMode = XmlDocument.getAttributeValue(itemSoldNode, "AmountRecMode");
-							String underMem = XmlDocument.getAttributeValue(itemSoldNode, "UnderMember");
-							itemBought.getItemsSold()
-									.add(new ItemSold(personName, noOfPacks, kg, rate, transPortMiscExpense, totalPrice,
-											previousBalance, amtRec, amtbal, amtRecMode, underMem));
-						}
+				if (monthsNode == null) {
+					Month month = new Month("September");
+					member.getMonths().add(month);
+					loadDates(testSetData, datesNode, month);
+				} else {
+					monthsNode = testSetData.getNode(memberNode, "Months", null);
+					for (Node monthNode : XmlDocument.getElements(monthsNode, "Month", null)) {
+						String monthName = XmlDocument.getAttributeValue(monthNode, "Name");
+						Month month = new Month(monthName);
+						member.getMonths().add(month);
+						datesNode = testSetData.getNode(monthNode, "Dates", null);
+						loadDates(testSetData, datesNode, month);
 					}
 				}
+
 				account.getMembers().add(member);
 			}
 			setModel(account);
@@ -110,6 +107,43 @@ public class ModelManager {
 			e.printStackTrace();
 		}
 		return account;
+	}
+
+	private void loadDates(XmlDocument testSetData, Node datesNode, Month month) {
+		for (Node dateNode : XmlDocument.getElements(datesNode, "Date", null)) {
+			String dateName = XmlDocument.getAttributeValue(dateNode, "Name");
+			Date date = new Date(dateName);
+			month.getDates().add(date);
+			for (Node itemBoughtNode : XmlDocument.getElements(dateNode, "ItemBought", null)) {
+				String itemName = XmlDocument.getAttributeValue(itemBoughtNode, "Name");
+				String vendorName = XmlDocument.getAttributeValue(itemBoughtNode, "Vendor");
+				String noOfPockets = XmlDocument.getAttributeValue(itemBoughtNode, "NoOfPockets");
+				String totalInKgs = XmlDocument.getAttributeValue(itemBoughtNode, "TotalInKGs");
+				String ratePerKg = XmlDocument.getAttributeValue(itemBoughtNode, "RatePerKG");
+				String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
+				String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode, "UnloadingCharges");
+				ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs, ratePerKg, miss,
+						unloadingCharges);
+				date.getItemsBought().add(itemBought);
+				Node itemsSoldNode = testSetData.getNode(itemBoughtNode, "ItemsSold", null);
+				for (Node itemSoldNode : XmlDocument.getElements(itemsSoldNode, "ItemSold", null)) {
+					String personName = XmlDocument.getAttributeValue(itemSoldNode, "Name");
+					String noOfPacks = XmlDocument.getAttributeValue(itemSoldNode, "NumberOfPacks");
+					String kg = XmlDocument.getAttributeValue(itemSoldNode, "Kilograms");
+					String rate = XmlDocument.getAttributeValue(itemSoldNode, "Rate");
+					String transPortMiscExpense = XmlDocument.getAttributeValue(itemSoldNode,
+							"TransportAndMiscExpenses");
+					String totalPrice = XmlDocument.getAttributeValue(itemSoldNode, "TotalPrice");
+					String previousBalance = XmlDocument.getAttributeValue(itemSoldNode, "PreviousBalance");
+					String amtRec = XmlDocument.getAttributeValue(itemSoldNode, "AmountReceived");
+					String amtbal = XmlDocument.getAttributeValue(itemSoldNode, "AmountBalance");
+					String amtRecMode = XmlDocument.getAttributeValue(itemSoldNode, "AmountRecMode");
+					String underMem = XmlDocument.getAttributeValue(itemSoldNode, "UnderMember");
+					itemBought.getItemsSold().add(new ItemSold(personName, noOfPacks, kg, rate, transPortMiscExpense,
+							totalPrice, previousBalance, amtRec, amtbal, amtRecMode, underMem));
+				}
+			}
+		}
 	}
 
 	public Patti loadPattiModelFromSetFile(String filePath) {
@@ -127,21 +161,53 @@ public class ModelManager {
 				Member member = new Member(memberName);
 
 				Node datesNode = testSetData.getNode(memberNode, "Dates", null);
-				for (Node dateNode : XmlDocument.getElements(datesNode, "Date", null)) {
-					String dateName = XmlDocument.getAttributeValue(dateNode, "Name");
-					Date date = new Date(dateName);
-					member.getDates().add(date);
-					for (Node itemBoughtNode : XmlDocument.getElements(dateNode, "ItemBought", null)) {
-						String itemName = XmlDocument.getAttributeValue(itemBoughtNode, "Name");
-						String vendorName = XmlDocument.getAttributeValue(itemBoughtNode, "Vendor");
-						String noOfPockets = XmlDocument.getAttributeValue(itemBoughtNode, "NoOfPockets");
-						String totalInKgs = XmlDocument.getAttributeValue(itemBoughtNode, "TotalInKGs");
-						String ratePerKg = XmlDocument.getAttributeValue(itemBoughtNode, "RatePerKG");
-						String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
-						String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode, "UnloadingCharges");
-						ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs, ratePerKg,
-								miss, unloadingCharges);
-						date.getItemsBought().add(itemBought);
+				Node monthsNode = testSetData.getNode(memberNode, "Months", null);
+
+				if (monthsNode == null) {
+					Month month = new Month("September");
+					member.getMonths().add(month);
+					for (Node dateNode : XmlDocument.getElements(datesNode, "Date", null)) {
+						String dateName = XmlDocument.getAttributeValue(dateNode, "Name");
+						Date date = new Date(dateName);
+						month.getDates().add(date);
+						for (Node itemBoughtNode : XmlDocument.getElements(dateNode, "ItemBought", null)) {
+							String itemName = XmlDocument.getAttributeValue(itemBoughtNode, "Name");
+							String vendorName = XmlDocument.getAttributeValue(itemBoughtNode, "Vendor");
+							String noOfPockets = XmlDocument.getAttributeValue(itemBoughtNode, "NoOfPockets");
+							String totalInKgs = XmlDocument.getAttributeValue(itemBoughtNode, "TotalInKGs");
+							String ratePerKg = XmlDocument.getAttributeValue(itemBoughtNode, "RatePerKG");
+							String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
+							String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode, "UnloadingCharges");
+							ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs,
+									ratePerKg, miss, unloadingCharges);
+							date.getItemsBought().add(itemBought);
+						}
+					}
+				} else {
+					monthsNode = testSetData.getNode(memberNode, "Months", null);
+					for (Node monthNode : XmlDocument.getElements(monthsNode, "Month", null)) {
+						String monthName = XmlDocument.getAttributeValue(monthNode, "Name");
+						Month month = new Month(monthName);
+						member.getMonths().add(month);
+						datesNode = testSetData.getNode(monthNode, "Dates", null);
+						for (Node dateNode : XmlDocument.getElements(datesNode, "Date", null)) {
+							String dateName = XmlDocument.getAttributeValue(dateNode, "Name");
+							Date date = new Date(dateName);
+							month.getDates().add(date);
+							for (Node itemBoughtNode : XmlDocument.getElements(dateNode, "ItemBought", null)) {
+								String itemName = XmlDocument.getAttributeValue(itemBoughtNode, "Name");
+								String vendorName = XmlDocument.getAttributeValue(itemBoughtNode, "Vendor");
+								String noOfPockets = XmlDocument.getAttributeValue(itemBoughtNode, "NoOfPockets");
+								String totalInKgs = XmlDocument.getAttributeValue(itemBoughtNode, "TotalInKGs");
+								String ratePerKg = XmlDocument.getAttributeValue(itemBoughtNode, "RatePerKG");
+								String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
+								String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode,
+										"UnloadingCharges");
+								ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs,
+										ratePerKg, miss, unloadingCharges);
+								date.getItemsBought().add(itemBought);
+							}
+						}
 					}
 				}
 				patti.getMembers().add(member);
@@ -221,98 +287,108 @@ public class ModelManager {
 				nameAttr.setValue(member.getName());
 				menberNode.setAttributeNode(nameAttr);
 
-				Element datesNode = doc.createElement("Dates");
-				menberNode.appendChild(datesNode);
-				for (Date date : member.getDates()) {
-					Element dateNode = doc.createElement("Date");
-					datesNode.appendChild(dateNode);
+				Element monthsNode = doc.createElement("Months");
+				menberNode.appendChild(monthsNode);
+				for (Month month : member.getMonths()) {
+					Element monthNode = doc.createElement("Month");
+					monthsNode.appendChild(monthNode);
 					nameAttr = doc.createAttribute("Name");
-					nameAttr.setValue(date.getName());
-					dateNode.setAttributeNode(nameAttr);
+					nameAttr.setValue(month.getName());
+					monthNode.setAttributeNode(nameAttr);
+					Element datesNode = doc.createElement("Dates");
+					monthNode.appendChild(datesNode);
+					for (Date date : month.getDates()) {
+						Element dateNode = doc.createElement("Date");
+						datesNode.appendChild(dateNode);
+						nameAttr = doc.createAttribute("Name");
+						nameAttr.setValue(date.getName());
+						dateNode.setAttributeNode(nameAttr);
 
-					for (ItemBought item : date.getItemsBought()) {
-						Element itemBoughtNode = doc.createElement("ItemBought");
-						dateNode.appendChild(itemBoughtNode);
-
-						setNameAtr = doc.createAttribute("Name");
-						setNameAtr.setValue(item.getName());
-						itemBoughtNode.setAttributeNode(setNameAtr);
-
-						Attr vendor = doc.createAttribute("Vendor");
-						vendor.setValue(item.getVendor());
-						itemBoughtNode.setAttributeNode(vendor);
-
-						Attr noOfPoc = doc.createAttribute("NoOfPockets");
-						noOfPoc.setValue(item.getNoOfPockets());
-						itemBoughtNode.setAttributeNode(noOfPoc);
-
-						Attr totalInKgs = doc.createAttribute("TotalInKGs");
-						totalInKgs.setValue(item.getTotalInKg());
-						itemBoughtNode.setAttributeNode(totalInKgs);
-
-						Attr ratePerKG = doc.createAttribute("RatePerKG");
-						ratePerKG.setValue(item.getRatePerKg());
-						itemBoughtNode.setAttributeNode(ratePerKG);
-
-						Attr mis = doc.createAttribute("Miscellaneous");
-						mis.setValue(item.getMiscellaneous());
-						itemBoughtNode.setAttributeNode(mis);
-
-						Attr unloadingCharges = doc.createAttribute("UnloadingCharges");
-						unloadingCharges.setValue(item.getUnloadingCharges());
-						itemBoughtNode.setAttributeNode(unloadingCharges);
-
-						Element itemsSoldNode = doc.createElement("ItemsSold");
-						itemBoughtNode.appendChild(itemsSoldNode);
-						for (ItemSold itemSold : item.getItemsSold()) {
-							Element itemSoldNode = doc.createElement("ItemSold");
-							itemsSoldNode.appendChild(itemSoldNode);
+						for (ItemBought item : date.getItemsBought()) {
+							Element itemBoughtNode = doc.createElement("ItemBought");
+							dateNode.appendChild(itemBoughtNode);
 
 							setNameAtr = doc.createAttribute("Name");
-							setNameAtr.setValue(itemSold.getPersonName());
-							itemSoldNode.setAttributeNode(setNameAtr);
+							setNameAtr.setValue(item.getName());
+							itemBoughtNode.setAttributeNode(setNameAtr);
 
-							Attr packs = doc.createAttribute("NumberOfPacks");
-							packs.setValue(itemSold.getNumberOfPacks());
-							itemSoldNode.setAttributeNode(packs);
+							Attr vendor = doc.createAttribute("Vendor");
+							vendor.setValue(item.getVendor());
+							itemBoughtNode.setAttributeNode(vendor);
 
-							Attr kg = doc.createAttribute("Kilograms");
-							kg.setValue(itemSold.getTotalKg());
-							itemSoldNode.setAttributeNode(kg);
+							Attr noOfPoc = doc.createAttribute("NoOfPockets");
+							noOfPoc.setValue(item.getNoOfPockets());
+							itemBoughtNode.setAttributeNode(noOfPoc);
 
-							Attr unitPrice = doc.createAttribute("Rate");
-							unitPrice.setValue(itemSold.getUnitPrice());
-							itemSoldNode.setAttributeNode(unitPrice);
+							Attr totalInKgs = doc.createAttribute("TotalInKGs");
+							totalInKgs.setValue(item.getTotalInKg());
+							itemBoughtNode.setAttributeNode(totalInKgs);
 
-							Attr tranMisc = doc.createAttribute("TransportAndMiscExpenses");
-							tranMisc.setValue(itemSold.getTranportAndMisc());
-							itemSoldNode.setAttributeNode(tranMisc);
+							Attr ratePerKG = doc.createAttribute("RatePerKG");
+							ratePerKG.setValue(item.getRatePerKg());
+							itemBoughtNode.setAttributeNode(ratePerKG);
 
-							Attr totalPrice = doc.createAttribute("TotalPrice");
-							totalPrice.setValue(itemSold.getTotalPrice());
-							itemSoldNode.setAttributeNode(totalPrice);
+							Attr mis = doc.createAttribute("Miscellaneous");
+							mis.setValue(item.getMiscellaneous());
+							itemBoughtNode.setAttributeNode(mis);
 
-							Attr preBal = doc.createAttribute("PreviousBalance");
-							preBal.setValue(itemSold.getPreviousBal());
-							itemSoldNode.setAttributeNode(preBal);
+							Attr unloadingCharges = doc.createAttribute("UnloadingCharges");
+							unloadingCharges.setValue(item.getUnloadingCharges());
+							itemBoughtNode.setAttributeNode(unloadingCharges);
 
-							Attr amtRec = doc.createAttribute("AmountReceived");
-							amtRec.setValue(itemSold.getAmtReceived());
-							itemSoldNode.setAttributeNode(amtRec);
+							Element itemsSoldNode = doc.createElement("ItemsSold");
+							itemBoughtNode.appendChild(itemsSoldNode);
+							for (ItemSold itemSold : item.getItemsSold()) {
+								Element itemSoldNode = doc.createElement("ItemSold");
+								itemsSoldNode.appendChild(itemSoldNode);
 
-							Attr amtBal = doc.createAttribute("AmountBalance");
-							amtBal.setValue(itemSold.getAmtBalance());
-							itemSoldNode.setAttributeNode(amtBal);
+								setNameAtr = doc.createAttribute("Name");
+								setNameAtr.setValue(itemSold.getPersonName());
+								itemSoldNode.setAttributeNode(setNameAtr);
 
-							Attr amtRecMode = doc.createAttribute("AmountRecMode");
-							amtRecMode.setValue(itemSold.getAmtRecMode());
-							itemSoldNode.setAttributeNode(amtRecMode);
+								Attr packs = doc.createAttribute("NumberOfPacks");
+								packs.setValue(itemSold.getNumberOfPacks());
+								itemSoldNode.setAttributeNode(packs);
 
-							Attr underMem = doc.createAttribute("UnderMember");
-							underMem.setValue(itemSold.getSoldUnderMember());
-							itemSoldNode.setAttributeNode(underMem);
+								Attr kg = doc.createAttribute("Kilograms");
+								kg.setValue(itemSold.getTotalKg());
+								itemSoldNode.setAttributeNode(kg);
+
+								Attr unitPrice = doc.createAttribute("Rate");
+								unitPrice.setValue(itemSold.getUnitPrice());
+								itemSoldNode.setAttributeNode(unitPrice);
+
+								Attr tranMisc = doc.createAttribute("TransportAndMiscExpenses");
+								tranMisc.setValue(itemSold.getTranportAndMisc());
+								itemSoldNode.setAttributeNode(tranMisc);
+
+								Attr totalPrice = doc.createAttribute("TotalPrice");
+								totalPrice.setValue(itemSold.getTotalPrice());
+								itemSoldNode.setAttributeNode(totalPrice);
+
+								Attr preBal = doc.createAttribute("PreviousBalance");
+								preBal.setValue(itemSold.getPreviousBal());
+								itemSoldNode.setAttributeNode(preBal);
+
+								Attr amtRec = doc.createAttribute("AmountReceived");
+								amtRec.setValue(itemSold.getAmtReceived());
+								itemSoldNode.setAttributeNode(amtRec);
+
+								Attr amtBal = doc.createAttribute("AmountBalance");
+								amtBal.setValue(itemSold.getAmtBalance());
+								itemSoldNode.setAttributeNode(amtBal);
+
+								Attr amtRecMode = doc.createAttribute("AmountRecMode");
+								amtRecMode.setValue(itemSold.getAmtRecMode());
+								itemSoldNode.setAttributeNode(amtRecMode);
+
+								Attr underMem = doc.createAttribute("UnderMember");
+								underMem.setValue(itemSold.getSoldUnderMember());
+								itemSoldNode.setAttributeNode(underMem);
+							}
 						}
 					}
+
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();
 					Transformer transformer = transformerFactory.newTransformer();
@@ -326,6 +402,7 @@ public class ModelManager {
 						pro.refreshLocal(IResource.DEPTH_INFINITE, new NullProgressMonitor());
 					}
 				}
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -353,48 +430,60 @@ public class ModelManager {
 				Attr nameAttr = doc.createAttribute("Name");
 				nameAttr.setValue(member.getName());
 				menberNode.setAttributeNode(nameAttr);
-
-				Element datesNode = doc.createElement("Dates");
-				menberNode.appendChild(datesNode);
-				for (Date date : member.getDates()) {
-					Element dateNode = doc.createElement("Date");
-					datesNode.appendChild(dateNode);
+				
+				Element monthsNode = doc.createElement("Months");
+				menberNode.appendChild(monthsNode);
+				for (Month month : member.getMonths()) {
+					Element monthNode = doc.createElement("Month");
+					monthsNode.appendChild(monthNode);
 					nameAttr = doc.createAttribute("Name");
-					nameAttr.setValue(date.getName());
-					dateNode.setAttributeNode(nameAttr);
+					nameAttr.setValue(month.getName());
+					monthNode.setAttributeNode(nameAttr);
+					
+					Element datesNode = doc.createElement("Dates");
+					monthNode.appendChild(datesNode);
+					for (Date date : month.getDates()) {
+						Element dateNode = doc.createElement("Date");
+						datesNode.appendChild(dateNode);
+						nameAttr = doc.createAttribute("Name");
+						nameAttr.setValue(date.getName());
+						dateNode.setAttributeNode(nameAttr);
 
-					for (ItemBought item : date.getItemsBought()) {
-						Element itemBoughtNode = doc.createElement("ItemBought");
-						dateNode.appendChild(itemBoughtNode);
+						for (ItemBought item : date.getItemsBought()) {
+							Element itemBoughtNode = doc.createElement("ItemBought");
+							dateNode.appendChild(itemBoughtNode);
 
-						setNameAtr = doc.createAttribute("Name");
-						setNameAtr.setValue(item.getName());
-						itemBoughtNode.setAttributeNode(setNameAtr);
+							setNameAtr = doc.createAttribute("Name");
+							setNameAtr.setValue(item.getName());
+							itemBoughtNode.setAttributeNode(setNameAtr);
 
-						Attr vendor = doc.createAttribute("Vendor");
-						vendor.setValue(item.getVendor());
-						itemBoughtNode.setAttributeNode(vendor);
+							Attr vendor = doc.createAttribute("Vendor");
+							vendor.setValue(item.getVendor());
+							itemBoughtNode.setAttributeNode(vendor);
 
-						Attr noOfPoc = doc.createAttribute("NoOfPockets");
-						noOfPoc.setValue(item.getNoOfPockets());
-						itemBoughtNode.setAttributeNode(noOfPoc);
+							Attr noOfPoc = doc.createAttribute("NoOfPockets");
+							noOfPoc.setValue(item.getNoOfPockets());
+							itemBoughtNode.setAttributeNode(noOfPoc);
 
-						Attr totalInKgs = doc.createAttribute("TotalInKGs");
-						totalInKgs.setValue(item.getTotalInKg());
-						itemBoughtNode.setAttributeNode(totalInKgs);
+							Attr totalInKgs = doc.createAttribute("TotalInKGs");
+							totalInKgs.setValue(item.getTotalInKg());
+							itemBoughtNode.setAttributeNode(totalInKgs);
 
-						Attr ratePerKG = doc.createAttribute("RatePerKG");
-						ratePerKG.setValue(item.getRatePerKg());
-						itemBoughtNode.setAttributeNode(ratePerKG);
+							Attr ratePerKG = doc.createAttribute("RatePerKG");
+							ratePerKG.setValue(item.getRatePerKg());
+							itemBoughtNode.setAttributeNode(ratePerKG);
 
-						Attr mis = doc.createAttribute("Miscellaneous");
-						mis.setValue(item.getMiscellaneous());
-						itemBoughtNode.setAttributeNode(mis);
+							Attr mis = doc.createAttribute("Miscellaneous");
+							mis.setValue(item.getMiscellaneous());
+							itemBoughtNode.setAttributeNode(mis);
 
-						Attr unloadingCharges = doc.createAttribute("UnloadingCharges");
-						unloadingCharges.setValue(item.getUnloadingCharges());
-						itemBoughtNode.setAttributeNode(unloadingCharges);
-					}
+							Attr unloadingCharges = doc.createAttribute("UnloadingCharges");
+							unloadingCharges.setValue(item.getUnloadingCharges());
+							itemBoughtNode.setAttributeNode(unloadingCharges);
+						}
+				}
+
+				
 
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();

@@ -8,6 +8,7 @@ import accounts.plugin.model.classes.Accounts;
 import accounts.plugin.model.classes.Date;
 import accounts.plugin.model.classes.ItemBought;
 import accounts.plugin.model.classes.Member;
+import accounts.plugin.model.classes.Month;
 
 public class AccountsContentProvider implements ITreeContentProvider {
 
@@ -17,7 +18,9 @@ public class AccountsContentProvider implements ITreeContentProvider {
 			return ((Accounts) arg0).getMembers().toArray();
 		}
 		else if (arg0 instanceof Member) {
-			return ((Member) arg0).getDates().toArray();
+			return ((Member) arg0).getMonths().toArray();
+		}else if (arg0 instanceof Month) {
+			return ((Month) arg0).getDates().toArray();
 		}else if (arg0 instanceof Date) {
 			return ((Date) arg0).getItemsBought().toArray();
 		}else if (arg0 instanceof ItemBought) {
@@ -42,7 +45,7 @@ public class AccountsContentProvider implements ITreeContentProvider {
 
 	@Override
 	public boolean hasChildren(Object arg0) {
-		if (arg0 instanceof Accounts ||arg0 instanceof Member ||arg0 instanceof Date ||arg0 instanceof ItemBought) {
+		if (arg0 instanceof Accounts ||arg0 instanceof Member ||arg0 instanceof Month||arg0 instanceof Date ||arg0 instanceof ItemBought) {
 			return true;
 		}
 		return false;
