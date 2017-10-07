@@ -55,6 +55,7 @@ public class RemoveItemsBought extends Action {
 							while (iterator.hasNext()) {
 								ItemBought itemBought = (ItemBought) iterator.next();
 								if (firstElement.equals(itemBought)) {
+									ModelManager.getInstance().getMapOfItemsBt().get(mem).remove(itemBought);
 									iterator.remove();
 									break;
 								}

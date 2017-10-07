@@ -1,7 +1,9 @@
 package accounts.plugin.model.classes;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -29,6 +31,9 @@ public class ModelManager {
 	private Patti pattiModel;
 	private Map<String, String> balanceModel = new HashMap<>();
 
+	private Map<Member, List<ItemBought>> mapOfItemsBt = new HashMap<>();
+	private Map<Member, List<ItemSold>> mapOfItemsSold = new HashMap<>();
+
 	public static ModelManager getInstance() {
 		return instance;
 	}
@@ -49,6 +54,14 @@ public class ModelManager {
 		this.model = model;
 	}
 
+	public Map<Member, List<ItemBought>> getMapOfItemsBt() {
+		return mapOfItemsBt;
+	}
+
+	public Map<Member, List<ItemSold>> getMapOfItemsSold() {
+		return mapOfItemsSold;
+	}
+
 	public Map<String, String> getBalanceModel() {
 		return this.balanceModel;
 	}
@@ -67,28 +80,12 @@ public class ModelManager {
 				String memberName = XmlDocument.getAttributeValue(memberNode, "Name");
 				Member member = new Member(memberName);
 
-//				Node datesNode = testSetData.getNode(memberNode, "Dates", null);
-//				if (datesNode != null) {
-//					Month month = new Month("September");
-//					member.getMonths().add(month);
-//					loadDates(testSetData, datesNode, month);
-//				} else {
-//					Node monthsNode = testSetData.getNode(memberNode, "Months", null);
-//					for (Node monthNode : XmlDocument.getElements(monthsNode, "Month", null)) {
-//						String monthName = XmlDocument.getAttributeValue(monthNode, "Name");
-//						Month month = new Month(monthName);
-//						member.getMonths().add(month);
-//						datesNode = testSetData.getNode(monthNode, "Dates", null);
-//						loadDates(testSetData, datesNode, month);
-//					}
-//				}
-				
 				Node monthsNode = testSetData.getNode(memberNode, "Months", null);
 				Node datesNode = testSetData.getNode(memberNode, "Dates", null);
 				if (monthsNode == null) {
 					Month month = new Month("September");
 					member.getMonths().add(month);
-					loadDates(testSetData, datesNode, month);
+					loadDates(testSetData, datesNode, month, member);
 				} else {
 					monthsNode = testSetData.getNode(memberNode, "Months", null);
 					for (Node monthNode : XmlDocument.getElements(monthsNode, "Month", null)) {
@@ -96,7 +93,7 @@ public class ModelManager {
 						Month month = new Month(monthName);
 						member.getMonths().add(month);
 						datesNode = testSetData.getNode(monthNode, "Dates", null);
-						loadDates(testSetData, datesNode, month);
+						loadDates(testSetData, datesNode, month, member);
 					}
 				}
 
@@ -109,7 +106,7 @@ public class ModelManager {
 		return account;
 	}
 
-	private void loadDates(XmlDocument testSetData, Node datesNode, Month month) {
+	private void loadDates(XmlDocument testSetData, Node datesNode, Month month, Member member) {
 		for (Node dateNode : XmlDocument.getElements(datesNode, "Date", null)) {
 			String dateName = XmlDocument.getAttributeValue(dateNode, "Name");
 			Date date = new Date(dateName);
@@ -123,7 +120,15 @@ public class ModelManager {
 				String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
 				String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode, "UnloadingCharges");
 				ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs, ratePerKg, miss,
-						unloadingCharges);
+						unloadingCharges, member.getName());
+				List<ItemBought> list = mapOfItemsBt.get(member);
+				if (list == null) {
+					List<ItemBought> listOfItmsBt = new ArrayList();
+					listOfItmsBt.add(itemBought);
+					mapOfItemsBt.put(member, listOfItmsBt);
+				} else {
+					list.add(itemBought);
+				}
 				date.getItemsBought().add(itemBought);
 				Node itemsSoldNode = testSetData.getNode(itemBoughtNode, "ItemsSold", null);
 				for (Node itemSoldNode : XmlDocument.getElements(itemsSoldNode, "ItemSold", null)) {
@@ -139,8 +144,24 @@ public class ModelManager {
 					String amtbal = XmlDocument.getAttributeValue(itemSoldNode, "AmountBalance");
 					String amtRecMode = XmlDocument.getAttributeValue(itemSoldNode, "AmountRecMode");
 					String underMem = XmlDocument.getAttributeValue(itemSoldNode, "UnderMember");
-					itemBought.getItemsSold().add(new ItemSold(personName, noOfPacks, kg, rate, transPortMiscExpense,
-							totalPrice, previousBalance, amtRec, amtbal, amtRecMode, underMem));
+					String billNo = XmlDocument.getAttributeValue(itemSoldNode, "BillNo");
+
+					ItemSold itemSold = new ItemSold(personName, noOfPacks, kg, rate, transPortMiscExpense, totalPrice,
+							previousBalance, amtRec, amtbal, amtRecMode, underMem, billNo);
+					itemBought.getItemsSold().add(itemSold);
+
+					List<ItemSold> list2 = mapOfItemsSold.get(member);
+					if (list2 == null) {
+						if (itemSold.getAmtRecMode().startsWith("CASH") || itemSold.getAmtRecMode().startsWith("ACC")) {
+							List<ItemSold> listOfItmsSold = new ArrayList();
+							listOfItmsSold.add(itemSold);
+							mapOfItemsSold.put(member, listOfItmsSold);
+						}
+					} else {
+						if (itemSold.getAmtRecMode().startsWith("CASH") || itemSold.getAmtRecMode().startsWith("ACC")) {
+							list2.add(itemSold);
+						}
+					}
 				}
 			}
 		}
@@ -179,7 +200,7 @@ public class ModelManager {
 							String miss = XmlDocument.getAttributeValue(itemBoughtNode, "Miscellaneous");
 							String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode, "UnloadingCharges");
 							ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs,
-									ratePerKg, miss, unloadingCharges);
+									ratePerKg, miss, unloadingCharges, memberName);
 							date.getItemsBought().add(itemBought);
 						}
 					}
@@ -204,7 +225,7 @@ public class ModelManager {
 								String unloadingCharges = XmlDocument.getAttributeValue(itemBoughtNode,
 										"UnloadingCharges");
 								ItemBought itemBought = new ItemBought(itemName, vendorName, noOfPockets, totalInKgs,
-										ratePerKg, miss, unloadingCharges);
+										ratePerKg, miss, unloadingCharges, memberName);
 								date.getItemsBought().add(itemBought);
 							}
 						}
@@ -385,6 +406,10 @@ public class ModelManager {
 								Attr underMem = doc.createAttribute("UnderMember");
 								underMem.setValue(itemSold.getSoldUnderMember());
 								itemSoldNode.setAttributeNode(underMem);
+
+								Attr bill = doc.createAttribute("BillNo");
+								bill.setValue(itemSold.getBillNo());
+								itemSoldNode.setAttributeNode(bill);
 							}
 						}
 					}
@@ -430,7 +455,7 @@ public class ModelManager {
 				Attr nameAttr = doc.createAttribute("Name");
 				nameAttr.setValue(member.getName());
 				menberNode.setAttributeNode(nameAttr);
-				
+
 				Element monthsNode = doc.createElement("Months");
 				menberNode.appendChild(monthsNode);
 				for (Month month : member.getMonths()) {
@@ -439,7 +464,7 @@ public class ModelManager {
 					nameAttr = doc.createAttribute("Name");
 					nameAttr.setValue(month.getName());
 					monthNode.setAttributeNode(nameAttr);
-					
+
 					Element datesNode = doc.createElement("Dates");
 					monthNode.appendChild(datesNode);
 					for (Date date : month.getDates()) {
@@ -481,9 +506,7 @@ public class ModelManager {
 							unloadingCharges.setValue(item.getUnloadingCharges());
 							itemBoughtNode.setAttributeNode(unloadingCharges);
 						}
-				}
-
-				
+					}
 
 					// write the content into xml file
 					TransformerFactory transformerFactory = TransformerFactory.newInstance();

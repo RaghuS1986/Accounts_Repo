@@ -12,8 +12,17 @@ public class ItemBought extends AbstractModel{
 	  private String unloadingCharges = "0";
 	  private boolean isUnloadingChargesChanged = false;
 	  private List<ItemSold> itemsSold;
+	  private String memberName = "";
 	  
-	  public ItemBought(String name, String vendor, String noOfPockets, String totalInKg, String ratePerKg, String miss, String unloadingCharges)
+	  public String getMemberName() {
+		return memberName;
+	}
+
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+
+	public ItemBought(String name, String vendor, String noOfPockets, String totalInKg, String ratePerKg, String miss, String unloadingCharges,String memName)
 	  {
 	    setName(name);
 	    setVendor(vendor);
@@ -22,11 +31,13 @@ public class ItemBought extends AbstractModel{
 	    setRatePerKg(ratePerKg);
 	    setMiscellaneous(miss);
 	    setUnloadingCharges(unloadingCharges);
+	    setMemberName(memName);
 	  }
 	  
-	  public ItemBought(String string)
+	  public ItemBought(String string,String memName)
 	  {
 	    setName(string);
+	    setMemberName(memName);
 	  }
 	  
 	  public String getVendor()

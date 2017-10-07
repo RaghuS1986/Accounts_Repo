@@ -12,10 +12,13 @@ public class ItemSold {
 	private String amtBalance = "0";
 	private String amtRecMode = "";
 	private String soldUnderMember = "";
+	private String billNo = "";
+
+
 
 	public ItemSold(String personName, String numberOfPacks, String totalKg, String rate, String transportAndMis,
 			String totalPrice, String previousBalance, String amtReceived, String amtBalance, String amtRecMode,
-			String soldUnderMember) {
+			String soldUnderMember,String billNo) {
 		this.personName = personName;
 		this.numberOfPacks = numberOfPacks;
 		this.totalKg = totalKg;
@@ -27,8 +30,18 @@ public class ItemSold {
 		this.amtBalance = amtBalance;
 		this.amtRecMode = amtRecMode;
 		this.soldUnderMember = soldUnderMember;
+		this.billNo = billNo;
 	}
 
+	
+	public String getBillNo() {
+		return billNo;
+	}
+
+	public void setBillNo(String billNo) {
+		this.billNo = billNo;
+	}
+	
 	public String getTranportAndMisc() {
 		return this.tranportAndMisc;
 	}

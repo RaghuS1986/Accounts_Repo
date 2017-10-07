@@ -67,6 +67,7 @@ import accounts.plugin.ui.actions.RemoveItemsBought;
 import accounts.plugin.ui.actions.RemoveMonthAction;
 import accounts.plugin.ui.editingsupport.AmtRecEditingSupport;
 import accounts.plugin.ui.editingsupport.AmtRecModeEditingSupport;
+import accounts.plugin.ui.editingsupport.BillNoEditingSupport;
 import accounts.plugin.ui.editingsupport.KGEditingSupport;
 import accounts.plugin.ui.editingsupport.MiscellaneousEditingSupport;
 import accounts.plugin.ui.editingsupport.NameEditingSupport;
@@ -92,6 +93,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 	private Action removeItemsSoldAction;
 	private Action exportData;
 	private Action exportSummary;
+	private Action exportDaySummary;
 	private TreeViewer treeViewer;
 
 	public void doSave(IProgressMonitor arg0) {
@@ -280,6 +282,28 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 			}
 		});
 
+		TreeViewerColumn billNoClm = new TreeViewerColumn(this.treeViewer, 0);
+		billNoClm.getColumn().setWidth(60);
+		billNoClm.getColumn().setResizable(false);
+		billNoClm.getColumn().setText("Bill No");
+		billNoClm.setLabelProvider(new ColumnLabelProvider() {
+			public String getText(Object element) {
+				String counter = null;
+				if (element instanceof ItemBought) {
+					Member member = null;
+					for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
+						if (mem.getName().equals(((ItemBought) element).getMemberName())) {
+							member = mem;
+							break;
+						}
+					}
+					List<ItemBought> list = ModelManager.getInstance().getMapOfItemsBt().get(member);
+					counter = list.indexOf(element) + 1 + "";
+				}
+				return counter;
+			}
+		});
+
 		TreeViewerColumn emptyClm = new TreeViewerColumn(this.treeViewer, 0);
 		emptyClm.getColumn().setWidth(50);
 		emptyClm.getColumn().setResizable(false);
@@ -303,6 +327,22 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 				return name;
 			}
 		});
+		
+		TreeViewerColumn billNoClm2 = new TreeViewerColumn(this.treeViewer, 0);
+		billNoClm2.getColumn().setWidth(70);
+		billNoClm2.getColumn().setResizable(true);
+		billNoClm2.getColumn().setText("Bill No");
+		billNoClm2.setLabelProvider(new ColumnLabelProvider() {
+			public String getText(Object element) {
+				String billNo = null;
+				if ((element instanceof ItemSold)) {
+					billNo = ((ItemSold) element).getBillNo();
+				}
+				return billNo;
+			}
+		});
+		billNoClm2.setEditingSupport(new BillNoEditingSupport(this.treeViewer));
+		
 		TreeViewerColumn numOfPacks = new TreeViewerColumn(this.treeViewer, 0);
 		numOfPacks.getColumn().setWidth(120);
 		numOfPacks.getColumn().setResizable(true);
@@ -434,6 +474,28 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 		});
 		amtRecMode.setEditingSupport(new AmtRecModeEditingSupport(this.treeViewer));
 
+		TreeViewerColumn receiptNo = new TreeViewerColumn(this.treeViewer, 0);
+		receiptNo.getColumn().setWidth(100);
+		receiptNo.getColumn().setResizable(true);
+		receiptNo.getColumn().setText("Receipt No");
+		receiptNo.setLabelProvider(new ColumnLabelProvider() {
+			public String getText(Object element) {
+				String recNum = null;
+				if ((element instanceof ItemSold)) {
+					Member member = null;
+					for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
+						if (mem.getName().equals(((ItemSold) element).getSoldUnderMember())) {
+							member = mem;
+							break;
+						}
+					}
+					int index = ModelManager.getInstance().getMapOfItemsSold().get(member).indexOf(element);
+					recNum=index+1+"";
+				}
+				return recNum;
+			}
+		});
+		
 		this.treeViewer.setInput(Arrays.asList(new Accounts[] { ModelManager.getInstance().getModel() }));
 
 		MenuManager manager = new MenuManager();
@@ -616,31 +678,6 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 								}
 							}
 
-							// Map<ItemBought, List<ItemSold>> itemSolds = new LinkedHashMap<ItemBought,
-							// List<ItemSold>>();
-							// final Object firstElement = selection.getFirstElement();
-							// if ((firstElement instanceof ItemSold)) {
-							// final ItemSold itemSold = (ItemSold) firstElement;
-							// if (dt != null) {
-							// for (ItemBought itmBt : dt.getItemsBought()) {
-							// // List<ItemSold> list= new ArrayList<ItemSold>();
-							// for (ItemSold itmSld : itmBt.getItemsSold()) {
-							// if (itemSold.getPersonName().equals(itmSld.getPersonName())) {
-							// List<ItemSold> tempList = itemSolds.get(itmBt);
-							// if (tempList == null) {
-							// tempList = new ArrayList<ItemSold>();
-							// tempList.add(itmSld);
-							// itemSolds.put(itmBt, tempList);
-							// } else {
-							// tempList.add(itmSld);
-							// itemSolds.put(itmBt, tempList);
-							// }
-							// }
-							// }
-							// }
-							// }
-							// }
-
 							new File("C://temp").mkdir();
 							try {
 								File file = new File(
@@ -685,7 +722,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 									double totalAmtRecInCASH = 0.0;
 									double totalAmtRecInACC = 0.0;
 
-									// find the Amt balance------------
+									// find the Amt balance till yesterdays date------------
 									Map<String, String> amtBalanceMap = new HashMap<>();
 									if (member != null) {
 										boolean temp = false;
@@ -702,12 +739,12 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 																			? itmSold.getPreviousBal()
 																			: "0.0");
 															double temp2 = 0.0;
-															if (val > 1.0) {
+															if (val > 0.0) {
 																temp2 = val - Utility
 																		.converToDouble(itmSold.getAmtReceived());
 															}
 															amtBalanceMap.put(itmSold.getPersonName(),
-																	val > 1.0 ? temp2+"" : itmSold.getAmtBalance());
+																	val > 0.0 ? temp2 + "" : itmSold.getAmtBalance());
 														}
 													}
 												} else {
@@ -719,8 +756,8 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 									}
 									// -------------------
 
-									Map<String, List<String>> map = new HashMap<>();
-									Map<String, List<String>> amtReceivedForTheDay = new HashMap<>();
+									Map<String, List<String>> personNameToTotalPriceMap = new HashMap<>();
+									Map<String, List<String>> personNameToAmtReceivedForTheDay = new HashMap<>();
 									for (ItemBought itmsBt : date.getItemsBought()) {
 										for (ItemSold itmSld : itmsBt.getItemsSold()) {
 											// double kg = Utility.converToDouble(itmSld.getTotalKg()).doubleValue();
@@ -731,20 +768,21 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 											double tranMis = Utility.converToDouble(itmSld.getTranportAndMisc())
 													.doubleValue();
 											totalMisCost += tranMis;
-											List<String> val = map.get(itmSld.getPersonName());
+											List<String> val = personNameToTotalPriceMap.get(itmSld.getPersonName());
 											if (val == null) {
 												List<String> value = new ArrayList<>();
 												value.add(itmSld.getTotalPrice());
-												map.put(itmSld.getPersonName(), value);
+												personNameToTotalPriceMap.put(itmSld.getPersonName(), value);
 											} else {
 												val.add(itmSld.getTotalPrice());
 											}
 
-											List<String> amtRec = amtReceivedForTheDay.get(itmSld.getPersonName());
+											List<String> amtRec = personNameToAmtReceivedForTheDay
+													.get(itmSld.getPersonName());
 											if (amtRec == null) {
 												List<String> value = new ArrayList<>();
 												value.add(itmSld.getAmtReceived());
-												amtReceivedForTheDay.put(itmSld.getPersonName(), value);
+												personNameToAmtReceivedForTheDay.put(itmSld.getPersonName(), value);
 											} else {
 												amtRec.add(itmSld.getAmtReceived());
 											}
@@ -761,8 +799,8 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 									strings.add("\nTotal Sale Cost : " + totalSaleCost + "\n");
 									strings.add("(Person_Name  Previous_Bal  Total_Price  Amt_Received  Aval_Bal)");
 									strings.add("---------------------------------------------------------------");
-									for (String key : map.keySet()) {
-										List<String> values = map.get(key);
+									for (String key : personNameToTotalPriceMap.keySet()) {
+										List<String> values = personNameToTotalPriceMap.get(key);
 										double totalPricetemp = 0.0;
 										for (String string : values) {
 											totalPricetemp += Utility.converToDouble(string).doubleValue();
@@ -793,7 +831,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 											}
 										}
 
-										List<String> amtReceived = amtReceivedForTheDay.get(key);
+										List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
 										double amtRecTemp = 0.0;
 										for (String string : amtReceived) {
 											amtRecTemp += Utility.converToDouble(string).doubleValue();
@@ -801,6 +839,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 
 										double availableBalance = Utility.converToDouble(amtbalanceFromPreviousDay)
 												+ totalPricetemp - amtRecTemp;
+										amtBalanceMap.put(key, Utility.converToDouble(amtbalanceFromPreviousDay) + "");
 										strings.add(key + " > "
 												+ (amtbalanceFromPreviousDay != null ? amtbalanceFromPreviousDay : 0.0)
 												+ " > " + totalPricetemp + " > " + amtRecTemp + " > "
@@ -877,14 +916,226 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 						}
 					};
 					dialog.open();
-
 				}
 			}
 		};
 		this.exportSummary.setText("Export Summary");
 		manager.add(this.exportSummary);
 
+		this.exportDaySummary = new Action() {
+			@Override
+			public void run() {
+				IStructuredSelection selection = (IStructuredSelection) AccountsEditor.this.treeViewer.getSelection();
+				final Object firstElement = selection.getFirstElement();
+				if ((firstElement instanceof Date)) {
+
+					final Date date = (Date) firstElement;
+					Dialog dialog = new Dialog(parent.getShell()) {
+						protected Control createDialogArea(Composite parent) {
+							Composite composite = new Composite(parent, 0);
+							composite.setLayout(new GridLayout());
+							composite.setLayoutData(new GridData(4, 4, true, false));
+
+							Label label = new Label(composite, 0);
+							label.setText("Day Summary Data file will be created under C:/temp with a file as Date .");
+							return parent;
+						}
+
+						protected void okPressed() {
+
+							TreeSelection sel = (TreeSelection) AccountsEditor.this.treeViewer.getSelection();
+							TreePath[] paths = sel.getPaths();
+							Member member = null;
+							for (TreePath treePath : paths) {
+								if ((treePath.getSegment(1) instanceof Member)) {
+									member = (Member) treePath.getSegment(1);
+									break;
+								}
+							}
+
+							new File("C://temp").mkdir();
+							try {
+								File file = new File("C://temp//" + ((Date) firstElement).getName().replace("/", "_")
+										+ "_day_summary.doc");
+								file.createNewFile();
+
+								BufferedWriter bw = null;
+								FileWriter fw = null;
+								try {
+									List<String> strings = new ArrayList<>();
+									Map<ItemBought, String> individualDetails = new LinkedHashMap<ItemBought, String>();
+									strings.add(member.getName()+":");
+									strings.add("					PURCHASE					");
+									strings.add(
+											"-------------------------------------------------------------------------");
+									strings.add("Date			Bill Num		Amount		Party Name");
+									strings.add(
+											"-------------------------------------------------------------------------");
+									for (ItemBought itmsBt : date.getItemsBought()) {
+										double totalKg = Utility.converToDouble(itmsBt.getTotalInKg()).doubleValue();
+										double unitPrice = Utility.converToDouble(itmsBt.getRatePerKg()).doubleValue();
+										double mis = Utility.converToDouble(itmsBt.getMiscellaneous()).doubleValue();
+										double unloading = Utility.converToDouble(itmsBt.getUnloadingCharges())
+												.doubleValue();
+										double totalCost = totalKg * unitPrice - (mis + unloading);
+										individualDetails.put(itmsBt, totalCost + "");
+									}
+
+									for (ItemBought itm : individualDetails.keySet()) {
+										int indexOf = ModelManager.getInstance().getMapOfItemsBt().get(member)
+												.indexOf(itm);
+										String billNo = (indexOf + 1) + "";
+										int temp = individualDetails.get(itm).toString().length();
+										strings.add(date.getName() + "\t\t" + billNo + "\t\t\t"
+												+ individualDetails.get(itm) + (temp <= 5 ? "\t\t\t" : "\t\t")
+												+ itm.getVendor());
+									}
+									// ----------------------------- END OF Purchase details
+
+									// -------------------- Summary of Sale
+									Map<String, List<String>> personNameToTotalPriceMap = new LinkedHashMap<>();
+									Map<String, String> personNameToBillNoMap = new LinkedHashMap<>();
+									Map<ItemSold, List<String>> personNameToAmtReceivedForTheDay = new LinkedHashMap<>();
+									for (ItemBought itmsBt : date.getItemsBought()) {
+										for (ItemSold itmSld : itmsBt.getItemsSold()) {
+											List<String> val = personNameToTotalPriceMap.get(itmSld.getPersonName());
+											if (val == null) {
+												List<String> value = new ArrayList<>();
+												value.add(itmSld.getTotalPrice());
+												personNameToTotalPriceMap.put(itmSld.getPersonName(), value);
+											} else {
+												val.add(itmSld.getTotalPrice());
+											}
+
+											List<String> amtRecList = personNameToAmtReceivedForTheDay
+													.get(itmSld);
+											if (amtRecList == null && !itmSld.getAmtReceived().trim().isEmpty()) {
+												List<String> value = new ArrayList<>();
+												value.add(itmSld.getAmtReceived()+"/"+itmSld.getAmtRecMode());
+												personNameToAmtReceivedForTheDay.put(itmSld, value);
+											} else {
+												if (!itmSld.getAmtReceived().trim().isEmpty()) {
+													amtRecList.add(itmSld.getAmtReceived()+"/"+itmSld.getAmtRecMode());
+												}
+											}
+											
+											String billNo = personNameToBillNoMap.get(itmSld.getPersonName());
+											if (billNo==null && itmSld.getBillNo()!=null && !itmSld.getBillNo().trim().isEmpty()) {
+												personNameToBillNoMap.put(itmSld.getPersonName(), itmSld.getBillNo());
+											}
+										}
+									}
+									
+									strings.add("\n\n\n					SALES					");
+									strings.add(
+											"-------------------------------------------------------------------------");
+									strings.add("Date			Bill Num		Amount		Party Name");
+									strings.add(
+											"-------------------------------------------------------------------------");
+									for (String key : personNameToTotalPriceMap.keySet()) {
+										List<String> values = personNameToTotalPriceMap.get(key);
+										double totalPricetemp = 0.0;
+										for (String string : values) {
+											totalPricetemp += Utility.converToDouble(string).doubleValue();
+										}										
+										if (totalPricetemp>0.0) {
+											strings.add(date.getName() + "		" +(personNameToBillNoMap.get(key)!=null?personNameToBillNoMap.get(key):"" )+ "			 "
+													+ totalPricetemp + (((totalPricetemp+"").toString()).length() <= 4 ? "			" : "\t\t")
+													+ key);
+										}
+									}
+									
+									
+									strings.add("\n\n\n					RECEIPTS					");
+									strings.add(
+											"-------------------------------------------------------------------------");
+									strings.add("Date		Receipt	Amount		Amount	Party");
+									strings.add("		number	received		mode		name");
+									strings.add(
+											"-------------------------------------------------------------------------");
+									for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
+										List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
+										double amtRecTempInCash = 0.0;
+										double amtRecTempInAcc = 0.0;
+										for (String string : amtReceived) {
+											String[] val= string.split("/");
+											if (val.length>1 && val[1].startsWith("CASH")) {
+												amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
+											}else if(val.length>1 && val[1].startsWith("ACC")){
+												amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
+											}
+										}
+										int receiptNum =ModelManager.getInstance().getMapOfItemsSold().get(member).indexOf(key);
+										receiptNum=receiptNum+1;
+										if (amtRecTempInCash>0.0) {
+											strings.add(date.getName() + "	" + receiptNum + "		"
+													+ amtRecTempInCash + (((amtRecTempInCash+"").toString()).length() <= 5 ? "\t\t\t" : "\t\t")
+													+ "CASH\t\t"+key.getPersonName());
+										}
+										if (amtRecTempInAcc>0.0) {
+											strings.add(date.getName() + "	" + receiptNum + "		"
+													+ amtRecTempInAcc + (((amtRecTempInAcc+"").toString()).length() <= 5 ? "\t\t\t" : "\t\t")
+													+ "ACC\t\t"+key.getPersonName());
+										}
+									}
+
+									fw = new FileWriter(file);
+									bw = new BufferedWriter(fw);
+									for (String string : strings) {
+										bw.write(string);
+										bw.newLine();
+									}
+								} catch (IOException e) {
+									e.printStackTrace();
+									try {
+										if (bw != null) {
+											bw.close();
+										}
+										if (fw == null) {
+										}
+										fw.close();
+									} catch (IOException localIOException1) {
+									}
+								} finally {
+									try {
+										if (bw != null) {
+											bw.close();
+										}
+										if (fw != null) {
+											fw.close();
+										}
+									} catch (IOException localIOException2) {
+									}
+								}
+								try {
+									if (bw != null) {
+										bw.close();
+									}
+									if (fw != null) {
+										fw.close();
+									}
+								} catch (IOException localIOException3) {
+								}
+								super.okPressed();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+
+						protected void configureShell(Shell newShell) {
+							super.configureShell(newShell);
+							newShell.setText("Export Day Summary");
+						}
+					};
+					dialog.open();
+				}
+			}
+		};
+		exportDaySummary.setText("Export Day Summary");
+		manager.add(this.exportDaySummary);
+
 		this.exportData = new Action() {
+
 			public void run() {
 				IStructuredSelection selection = (IStructuredSelection) AccountsEditor.this.treeViewer.getSelection();
 				final Object firstElement = selection.getFirstElement();
@@ -1077,6 +1328,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 		manager.add(this.exportData);
 
 		this.treeViewer.getTree().addSelectionListener(new SelectionListener() {
+
 			public void widgetSelected(SelectionEvent arg0) {
 				Object firstElement = AccountsEditor.this.treeViewer.getStructuredSelection().getFirstElement();
 				if ((firstElement instanceof Accounts)) {
@@ -1092,6 +1344,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.removeItemsSoldAction.setEnabled(false);
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
+					AccountsEditor.this.exportDaySummary.setEnabled(false);
 				} else if ((firstElement instanceof Member)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(true);
@@ -1105,6 +1358,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.removeItemsSoldAction.setEnabled(false);
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
+					AccountsEditor.this.exportDaySummary.setEnabled(false);
 				} else if ((firstElement instanceof Month)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1118,6 +1372,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.removeItemsSoldAction.setEnabled(false);
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
+					AccountsEditor.this.exportDaySummary.setEnabled(false);
 				} else if ((firstElement instanceof accounts.plugin.model.classes.Date)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1131,6 +1386,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.removeItemsSoldAction.setEnabled(false);
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(true);
+					AccountsEditor.this.exportDaySummary.setEnabled(true);
 				} else if ((firstElement instanceof ItemBought)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1144,6 +1400,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.removeItemsSoldAction.setEnabled(false);
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
+					AccountsEditor.this.exportDaySummary.setEnabled(false);
 				} else if ((firstElement instanceof ItemSold)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1157,11 +1414,13 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.removeItemsSoldAction.setEnabled(true);
 					AccountsEditor.this.exportData.setEnabled(true);
 					AccountsEditor.this.exportSummary.setEnabled(false);
+					AccountsEditor.this.exportDaySummary.setEnabled(false);
 				}
 			}
 
 			public void widgetDefaultSelected(SelectionEvent arg0) {
 			}
+
 		});
 	}
 
