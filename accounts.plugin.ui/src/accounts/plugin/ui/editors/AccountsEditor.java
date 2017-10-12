@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.TreeViewerColumn;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -39,6 +40,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
@@ -95,6 +97,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 	private Action exportSummary;
 	private Action exportDaySummary;
 	private TreeViewer treeViewer;
+	private Action exportPersonData;
 
 	public void doSave(IProgressMonitor arg0) {
 	}
@@ -327,7 +330,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 				return name;
 			}
 		});
-		
+
 		TreeViewerColumn billNoClm2 = new TreeViewerColumn(this.treeViewer, 0);
 		billNoClm2.getColumn().setWidth(70);
 		billNoClm2.getColumn().setResizable(true);
@@ -342,7 +345,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 			}
 		});
 		billNoClm2.setEditingSupport(new BillNoEditingSupport(this.treeViewer));
-		
+
 		TreeViewerColumn numOfPacks = new TreeViewerColumn(this.treeViewer, 0);
 		numOfPacks.getColumn().setWidth(120);
 		numOfPacks.getColumn().setResizable(true);
@@ -490,12 +493,12 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 						}
 					}
 					int index = ModelManager.getInstance().getMapOfItemsSold().get(member).indexOf(element);
-					recNum=index+1+"";
+					recNum = index + 1 + "";
 				}
 				return recNum;
 			}
 		});
-		
+
 		this.treeViewer.setInput(Arrays.asList(new Accounts[] { ModelManager.getInstance().getModel() }));
 
 		MenuManager manager = new MenuManager();
@@ -964,7 +967,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 								try {
 									List<String> strings = new ArrayList<>();
 									Map<ItemBought, String> individualDetails = new LinkedHashMap<ItemBought, String>();
-									strings.add(member.getName()+":");
+									strings.add(member.getName() + ":");
 									strings.add("					PURCHASE					");
 									strings.add(
 											"-------------------------------------------------------------------------");
@@ -986,9 +989,9 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 												.indexOf(itm);
 										String billNo = (indexOf + 1) + "";
 										int temp = individualDetails.get(itm).toString().length();
-										strings.add(date.getName() + "\t\t" + billNo + "\t\t\t"
-												+ individualDetails.get(itm) + (temp <= 5 ? "\t\t\t" : "\t\t")
-												+ itm.getVendor());
+										strings.add(
+												date.getName() + "\t\t" + billNo + "\t\t\t" + individualDetails.get(itm)
+														+ (temp <= 5 ? "\t\t\t" : "\t\t") + itm.getVendor());
 									}
 									// ----------------------------- END OF Purchase details
 
@@ -1007,25 +1010,26 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 												val.add(itmSld.getTotalPrice());
 											}
 
-											List<String> amtRecList = personNameToAmtReceivedForTheDay
-													.get(itmSld);
+											List<String> amtRecList = personNameToAmtReceivedForTheDay.get(itmSld);
 											if (amtRecList == null && !itmSld.getAmtReceived().trim().isEmpty()) {
 												List<String> value = new ArrayList<>();
-												value.add(itmSld.getAmtReceived()+"/"+itmSld.getAmtRecMode());
+												value.add(itmSld.getAmtReceived() + "/" + itmSld.getAmtRecMode());
 												personNameToAmtReceivedForTheDay.put(itmSld, value);
 											} else {
 												if (!itmSld.getAmtReceived().trim().isEmpty()) {
-													amtRecList.add(itmSld.getAmtReceived()+"/"+itmSld.getAmtRecMode());
+													amtRecList.add(
+															itmSld.getAmtReceived() + "/" + itmSld.getAmtRecMode());
 												}
 											}
-											
+
 											String billNo = personNameToBillNoMap.get(itmSld.getPersonName());
-											if (billNo==null && itmSld.getBillNo()!=null && !itmSld.getBillNo().trim().isEmpty()) {
+											if (billNo == null && itmSld.getBillNo() != null
+													&& !itmSld.getBillNo().trim().isEmpty()) {
 												personNameToBillNoMap.put(itmSld.getPersonName(), itmSld.getBillNo());
 											}
 										}
 									}
-									
+
 									strings.add("\n\n\n					SALES					");
 									strings.add(
 											"-------------------------------------------------------------------------");
@@ -1037,15 +1041,19 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 										double totalPricetemp = 0.0;
 										for (String string : values) {
 											totalPricetemp += Utility.converToDouble(string).doubleValue();
-										}										
-										if (totalPricetemp>0.0) {
-											strings.add(date.getName() + "		" +(personNameToBillNoMap.get(key)!=null?personNameToBillNoMap.get(key):"" )+ "			 "
-													+ totalPricetemp + (((totalPricetemp+"").toString()).length() <= 4 ? "			" : "\t\t")
+										}
+										if (totalPricetemp > 0.0) {
+											strings.add(date.getName() + "		"
+													+ (personNameToBillNoMap.get(key) != null
+															? personNameToBillNoMap.get(key)
+															: "")
+													+ "			 " + totalPricetemp
+													+ (((totalPricetemp + "").toString()).length() <= 4 ? "			"
+															: "\t\t")
 													+ key);
 										}
 									}
-									
-									
+
 									strings.add("\n\n\n					RECEIPTS					");
 									strings.add(
 											"-------------------------------------------------------------------------");
@@ -1058,24 +1066,27 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 										double amtRecTempInCash = 0.0;
 										double amtRecTempInAcc = 0.0;
 										for (String string : amtReceived) {
-											String[] val= string.split("/");
-											if (val.length>1 && val[1].startsWith("CASH")) {
+											String[] val = string.split("/");
+											if (val.length > 1 && val[1].startsWith("CASH")) {
 												amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
-											}else if(val.length>1 && val[1].startsWith("ACC")){
+											} else if (val.length > 1 && val[1].startsWith("ACC")) {
 												amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
 											}
 										}
-										int receiptNum =ModelManager.getInstance().getMapOfItemsSold().get(member).indexOf(key);
-										receiptNum=receiptNum+1;
-										if (amtRecTempInCash>0.0) {
-											strings.add(date.getName() + "	" + receiptNum + "		"
-													+ amtRecTempInCash + (((amtRecTempInCash+"").toString()).length() <= 5 ? "\t\t\t" : "\t\t")
-													+ "CASH\t\t"+key.getPersonName());
+										int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
+												.indexOf(key);
+										receiptNum = receiptNum + 1;
+										if (amtRecTempInCash > 0.0) {
+											strings.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
+													+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
+															: "\t\t")
+													+ "CASH\t\t" + key.getPersonName());
 										}
-										if (amtRecTempInAcc>0.0) {
-											strings.add(date.getName() + "	" + receiptNum + "		"
-													+ amtRecTempInAcc + (((amtRecTempInAcc+"").toString()).length() <= 5 ? "\t\t\t" : "\t\t")
-													+ "ACC\t\t"+key.getPersonName());
+										if (amtRecTempInAcc > 0.0) {
+											strings.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
+													+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
+															: "\t\t")
+													+ "ACC\t\t" + key.getPersonName());
 										}
 									}
 
@@ -1206,6 +1217,23 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 									if (personName != null && personName.trim().length() > 0) {
 										strings.add("Person Name\t\t\t\t- " + personName);
 									}
+
+									boolean billNoFound = false;
+									for (Entry<ItemBought, List<ItemSold>> entry : itemSolds.entrySet()) {
+										List<ItemSold> itemsSold = entry.getValue();
+										if (billNoFound) {
+											break;
+										}
+										for (ItemSold itemSold : itemsSold) {
+											if (itemSold.getBillNo() != null
+													&& itemSold.getBillNo().trim().length() > 0) {
+												strings.add("Bill number\t\t\t\t- " + itemSold.getBillNo());
+												billNoFound = true;
+												break;
+											}
+										}
+									}
+
 									strings.add("---------------------------------------------------------------");
 									for (Entry<ItemBought, List<ItemSold>> entry : itemSolds.entrySet()) {
 										String itemName = entry.getKey().getName();
@@ -1327,6 +1355,216 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 		this.exportData.setText("Export Data");
 		manager.add(this.exportData);
 
+		this.exportPersonData = new Action() {
+
+			public void run() {
+				IStructuredSelection selection = (IStructuredSelection) AccountsEditor.this.treeViewer.getSelection();
+				final Object firstElement = selection.getFirstElement();
+				if ((firstElement instanceof Member)) {
+					final Member member = (Member) firstElement;
+					Dialog dialog = new Dialog(parent.getShell()) {
+						Text personNameTxt = null;
+						Text startDateTxt = null;
+						Text endDateTxt = null;
+
+						protected Control createDialogArea(Composite parent) {
+							Composite area = (Composite) super.createDialogArea(parent);
+							Composite container = new Composite(area, SWT.NONE);
+							GridLayout gl_container = new GridLayout(1, true);
+							gl_container.horizontalSpacing = 8;
+							gl_container.marginWidth = 8;
+							container.setLayout(gl_container);
+							container.setLayoutData(new GridData(GridData.FILL_BOTH));
+
+							Label label = new Label(container, SWT.NONE);
+							label.setText(
+									"Export Data file will be created under C:/temp with a file name \nstarts with Person Name and time stamp appended to it.");
+							new Label(container, SWT.NONE);
+
+							label = new Label(container, SWT.NONE);
+							label.setText("Enter Person name:");
+							personNameTxt = new Text(container, SWT.BORDER);
+							personNameTxt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+							new Label(container, SWT.NONE);
+
+							label = new Label(container, SWT.NONE);
+							label.setText("Enter Start date:");
+							startDateTxt = new Text(container, SWT.BORDER);
+							startDateTxt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+							new Label(container, SWT.NONE);
+
+							label = new Label(container, SWT.NONE);
+							label.setText("Enter End date:");
+							endDateTxt = new Text(container, SWT.BORDER);
+							endDateTxt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+
+							return parent;
+						}
+
+						protected void okPressed() {
+							boolean started = false;
+							Map<ItemSold, Date> itmSoldToDateMap = new LinkedHashMap<>();
+							Map<ItemSold, ItemBought> itmSoldToBtMap = new LinkedHashMap<>();
+							for (Month mnt : member.getMonths()) {
+								for (Date date : mnt.getDates()) {
+									if (date.getName().equals(startDateTxt.getText()) || started) {
+										started = true;
+										for (ItemBought itmBt : date.getItemsBought()) {
+											for (ItemSold itmSld : itmBt.getItemsSold()) {
+												if (itmSld.getPersonName().equals(personNameTxt.getText().trim())) {
+													itmSoldToDateMap.put(itmSld, date);
+													itmSoldToBtMap.put(itmSld, itmBt);
+												}
+											}
+										}
+									}
+									if (date.getName().equals(endDateTxt.getText())) {
+										started = false;
+									}
+								}
+							}
+
+							new File("C://temp").mkdir();
+							String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new java.util.Date());
+							try {
+								File file = new File("C://temp//" + personNameTxt.getText() + "_" + timeStamp + ".doc");
+								file.createNewFile();
+
+								BufferedWriter bw = null;
+								FileWriter fw = null;
+								try {
+									List<String> strings = new ArrayList<>();
+									strings.add("Person Name\t\t\t\t- " + personNameTxt.getText());
+									for (ItemSold itemSold : itmSoldToDateMap.keySet()) {
+										if (itemSold.getBillNo() != null && itemSold.getBillNo().trim().length() > 0) {
+											strings.add("Bill Number\t\t\t\t- " + itemSold.getBillNo());
+											break;
+										}
+									}
+									strings.add("---------------------------------------------------------------");
+
+									for (ItemSold itemSold : itmSoldToDateMap.keySet()) {
+
+										ItemBought itemBought = itmSoldToBtMap.get(itemSold);
+										Date dt = itmSoldToDateMap.get(itemSold);
+
+										if (dt != null && dt.getName().trim().length() > 0) {
+											strings.add("Date\t\t\t\t\t- " + dt.getName());
+										}
+
+										if (itemBought != null && itemBought.getName().trim().length() > 0) {
+											strings.add("Item Name\t\t\t\t- " + itemBought.getName());
+										}
+
+										String numberOfPacks = itemSold.getNumberOfPacks();
+										if (numberOfPacks != null && numberOfPacks.trim().length() > 0
+												&& Utility.parseInt(numberOfPacks) > 0) {
+											strings.add("Number of Pockets\t\t\t- " + numberOfPacks);
+										}
+
+										String totalKg = itemSold.getTotalKg();
+										if (totalKg != null && totalKg.trim().length() > 0
+												&& Utility.parseInt(totalKg) > 0) {
+											strings.add("Number of KGs\t\t\t- " + totalKg);
+										}
+
+										String unitPrice = itemSold.getUnitPrice();
+										if (unitPrice != null && unitPrice.trim().length() > 0
+												&& Utility.parseInt(unitPrice) > 0) {
+											strings.add("Rate\t\t\t\t\t- " + unitPrice);
+										}
+
+										String tranportAndMisc = itemSold.getTranportAndMisc();
+										if (tranportAndMisc != null && tranportAndMisc.trim().length() > 0
+												&& Utility.parseInt(tranportAndMisc) > 0) {
+											strings.add("Transport & Miscellaneous\t- " + tranportAndMisc);
+										}
+
+										String totalPrice = itemSold.getTotalPrice();
+										if (totalPrice != null && totalPrice.trim().length() > 0
+												&& Utility.converToDouble(totalPrice) > 0) {
+											strings.add("Total Price\t\t\t\t- " + totalPrice);
+										}
+
+										String previousBal = itemSold.getPreviousBal();
+										if (previousBal != null && previousBal.trim().length() > 0
+												&& Utility.parseInt(previousBal) > 0) {
+											strings.add("Previous Balance\t\t\t- " + previousBal);
+										}
+										String amtReceived = itemSold.getAmtReceived();
+										if (amtReceived != null && amtReceived.trim().length() > 0
+												&& Utility.parseInt(amtReceived) > 0) {
+											strings.add("Amount Received\t\t\t- " + amtReceived);
+										}
+
+										String amtBalance = itemSold.getAmtBalance();
+										if (amtBalance != null && amtBalance.trim().length() > 0
+												&& Utility.converToDouble(amtBalance) > 0) {
+											strings.add("Amount balance\t\t\t- " + amtBalance);
+										}
+
+										String amtRecMode = itemSold.getAmtRecMode();
+										if (amtRecMode != null && amtRecMode.trim().length() > 0) {
+											strings.add("Amount Received mode\t\t- " + amtRecMode);
+										}
+										strings.add("\n");
+									}
+
+									fw = new FileWriter(file);
+									bw = new BufferedWriter(fw);
+									for (String string : strings) {
+										bw.write(string);
+										bw.newLine();
+									}
+								} catch (IOException e) {
+									e.printStackTrace();
+									try {
+										if (bw != null) {
+											bw.close();
+										}
+										if (fw == null) {
+										}
+										fw.close();
+									} catch (IOException localIOException1) {
+									}
+								} finally {
+									try {
+										if (bw != null) {
+											bw.close();
+										}
+										if (fw != null) {
+											fw.close();
+										}
+									} catch (IOException localIOException2) {
+									}
+								}
+								try {
+									if (bw != null) {
+										bw.close();
+									}
+									if (fw != null) {
+										fw.close();
+									}
+								} catch (IOException localIOException3) {
+								}
+								super.okPressed();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
+
+						protected void configureShell(Shell newShell) {
+							super.configureShell(newShell);
+							newShell.setText("Export Person Data");
+						}
+					};
+					dialog.open();
+				}
+			}
+		};
+		this.exportPersonData.setText("Export Person Data");
+		manager.add(this.exportPersonData);
+
 		this.treeViewer.getTree().addSelectionListener(new SelectionListener() {
 
 			public void widgetSelected(SelectionEvent arg0) {
@@ -1345,6 +1583,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
+					AccountsEditor.this.exportPersonData.setEnabled(false);
 				} else if ((firstElement instanceof Member)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(true);
@@ -1359,6 +1598,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
+					AccountsEditor.this.exportPersonData.setEnabled(true);
 				} else if ((firstElement instanceof Month)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1373,6 +1613,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
+					AccountsEditor.this.exportPersonData.setEnabled(false);
 				} else if ((firstElement instanceof accounts.plugin.model.classes.Date)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1387,6 +1628,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(true);
 					AccountsEditor.this.exportDaySummary.setEnabled(true);
+					AccountsEditor.this.exportPersonData.setEnabled(false);
 				} else if ((firstElement instanceof ItemBought)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1401,6 +1643,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
+					AccountsEditor.this.exportPersonData.setEnabled(false);
 				} else if ((firstElement instanceof ItemSold)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1415,6 +1658,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(true);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
+					AccountsEditor.this.exportPersonData.setEnabled(false);
 				}
 			}
 

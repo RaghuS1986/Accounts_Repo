@@ -9,7 +9,6 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Display;
 
 import accounts.plugin.model.classes.Date;
-import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.Month;
 import accounts.plugin.ui.editors.EditorInterface;
 

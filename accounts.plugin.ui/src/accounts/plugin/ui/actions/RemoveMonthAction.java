@@ -11,7 +11,6 @@ import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 
 import accounts.plugin.model.classes.Accounts;
-import accounts.plugin.model.classes.Date;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
 import accounts.plugin.model.classes.Month;

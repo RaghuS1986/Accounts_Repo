@@ -45,7 +45,7 @@ public class AddItemsAction extends Action {
 				ItemBought itemBought = new ItemBought(dialog.getValue(),mem.getName());
 				List<ItemBought> list =ModelManager.getInstance().getMapOfItemsBt().get(mem);
 				if (list==null) {
-					List<ItemBought> listOfItmsBt = new ArrayList();
+					List<ItemBought> listOfItmsBt = new ArrayList<ItemBought>();
 					listOfItmsBt.add(itemBought);
 					ModelManager.getInstance().getMapOfItemsBt().put(mem, listOfItmsBt);
 				}else {

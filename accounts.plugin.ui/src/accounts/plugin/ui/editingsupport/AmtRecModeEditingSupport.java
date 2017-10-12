@@ -53,7 +53,7 @@ public class AmtRecModeEditingSupport extends EditingSupport {
 				List<ItemSold> list = ModelManager.getInstance().getMapOfItemsSold().get(member);
 				if (list == null) {
 					if (((ItemSold) arg0).getAmtRecMode().startsWith("CASH") || ((ItemSold) arg0).getAmtRecMode().startsWith("ACC")) {
-						List<ItemSold> listOfItmsSold = new ArrayList();
+						List<ItemSold> listOfItmsSold = new ArrayList<ItemSold>();
 						listOfItmsSold.add((ItemSold) arg0);
 						ModelManager.getInstance().getMapOfItemsSold().put(member, listOfItmsSold);
 					}
