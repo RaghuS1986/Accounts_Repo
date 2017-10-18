@@ -97,7 +97,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 	private Action exportSummary;
 	private Action exportDaySummary;
 	private TreeViewer treeViewer;
-	private Action exportPersonData;
+	private Action exportPersonSaleData;
 
 	public void doSave(IProgressMonitor arg0) {
 	}
@@ -1054,42 +1054,50 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 										}
 									}
 
-									strings.add("\n\n\n					RECEIPTS					");
-									strings.add(
-											"-------------------------------------------------------------------------");
-									strings.add("Date		Receipt	Amount		Amount	Party");
-									strings.add("		number	received		mode		name");
-									strings.add(
-											"-------------------------------------------------------------------------");
-									for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
-										List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
-										double amtRecTempInCash = 0.0;
-										double amtRecTempInAcc = 0.0;
-										for (String string : amtReceived) {
-											String[] val = string.split("/");
-											if (val.length > 1 && val[1].startsWith("CASH")) {
-												amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
-											} else if (val.length > 1 && val[1].startsWith("ACC")) {
-												amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
+										
+										List<String> tempList= new ArrayList<String>();
+										for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
+											List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
+											double amtRecTempInCash = 0.0;
+											double amtRecTempInAcc = 0.0;
+											for (String string : amtReceived) {
+												String[] val = string.split("/");
+												if (val.length > 1 && val[1].startsWith("CASH")) {
+													amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
+												} else if (val.length > 1 && val[1].startsWith("ACC")) {
+													amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
+												}
+											}
+											int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
+													.indexOf(key);
+											receiptNum = receiptNum + 1;
+											if (amtRecTempInCash > 0.0) {
+												tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
+														+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
+																: "\t\t")
+														+ "CASH\t\t" + key.getPersonName());
+											}
+											if (amtRecTempInAcc > 0.0) {
+												tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
+														+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
+																: "\t\t")
+														+ "ACC\t\t" + key.getPersonName());
 											}
 										}
-										int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
-												.indexOf(key);
-										receiptNum = receiptNum + 1;
-										if (amtRecTempInCash > 0.0) {
-											strings.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
-													+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
-															: "\t\t")
-													+ "CASH\t\t" + key.getPersonName());
+										
+										if (!tempList.isEmpty()) {
+											strings.add("\n\n\n					RECEIPTS					");
+											strings.add(
+													"-------------------------------------------------------------------------");
+											strings.add("Date		Receipt	Amount		Amount	Party");
+											strings.add("		number	received		mode		name");
+											strings.add(
+													"-------------------------------------------------------------------------");
+											for (String temp : tempList) {
+												strings.add(temp);
+											}
 										}
-										if (amtRecTempInAcc > 0.0) {
-											strings.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
-													+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
-															: "\t\t")
-													+ "ACC\t\t" + key.getPersonName());
-										}
-									}
-
+										
 									fw = new FileWriter(file);
 									bw = new BufferedWriter(fw);
 									for (String string : strings) {
@@ -1355,7 +1363,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 		this.exportData.setText("Export Data");
 		manager.add(this.exportData);
 
-		this.exportPersonData = new Action() {
+		this.exportPersonSaleData = new Action() {
 
 			public void run() {
 				IStructuredSelection selection = (IStructuredSelection) AccountsEditor.this.treeViewer.getSelection();
@@ -1555,15 +1563,15 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 
 						protected void configureShell(Shell newShell) {
 							super.configureShell(newShell);
-							newShell.setText("Export Person Data");
+							newShell.setText("Export Person Sale Data");
 						}
 					};
 					dialog.open();
 				}
 			}
 		};
-		this.exportPersonData.setText("Export Person Data");
-		manager.add(this.exportPersonData);
+		this.exportPersonSaleData.setText("Export Person Sale Data");
+		manager.add(this.exportPersonSaleData);
 
 		this.treeViewer.getTree().addSelectionListener(new SelectionListener() {
 
@@ -1583,7 +1591,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
-					AccountsEditor.this.exportPersonData.setEnabled(false);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof Member)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(true);
@@ -1598,7 +1606,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
-					AccountsEditor.this.exportPersonData.setEnabled(true);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(true);
 				} else if ((firstElement instanceof Month)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1613,7 +1621,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
-					AccountsEditor.this.exportPersonData.setEnabled(false);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof accounts.plugin.model.classes.Date)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1628,7 +1636,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(true);
 					AccountsEditor.this.exportDaySummary.setEnabled(true);
-					AccountsEditor.this.exportPersonData.setEnabled(false);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof ItemBought)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1643,7 +1651,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(false);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
-					AccountsEditor.this.exportPersonData.setEnabled(false);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof ItemSold)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
@@ -1658,7 +1666,7 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportData.setEnabled(true);
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
-					AccountsEditor.this.exportPersonData.setEnabled(false);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				}
 			}
 
