@@ -5531,11 +5531,12 @@
 <Date Name="20/10/2017">
 <ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="6" RatePerKG="45" TotalInKGs="521" UnloadingCharges="60" Vendor="HB">
 <ItemsSold>
-<ItemSold AmountBalance="358514.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="267" Name="SJ" NumberOfPacks="3" PreviousBalance="0" Rate="46" TotalPrice="12777.0" TransportAndMiscExpenses="495" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="358514.0" AmountRecMode="" AmountReceived="0" BillNo="438" Kilograms="267" Name="SJ" NumberOfPacks="3" PreviousBalance="0" Rate="46" TotalPrice="12777.0" TransportAndMiscExpenses="495" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="924466.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="TMRK" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="21/10/2017"/>
 </Dates>
 </Month>
 </Months>
