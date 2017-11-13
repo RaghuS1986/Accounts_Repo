@@ -6148,8 +6148,12 @@
 <ItemSold AmountBalance="14818.0" AmountRecMode="CASH" AmountReceived="10000" BillNo="" Kilograms="0" Name="NS" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 </ItemsSold>
 </ItemBought>
-<ItemBought Miscellaneous="0" Name="POTATO EVE" NoOfPockets="0" RatePerKG="0" TotalInKGs="0" UnloadingCharges="0" Vendor="">
-<ItemsSold/>
+<ItemBought Miscellaneous="0" Name="POTATO EVE" NoOfPockets="5" RatePerKG="12" TotalInKGs="252" UnloadingCharges="50" Vendor="BHEEMESH">
+<ItemsSold>
+<ItemSold AmountBalance="38928.0" AmountRecMode="" AmountReceived="0" BillNo="1494" Kilograms="98" Name="TNLP" NumberOfPacks="2" PreviousBalance="0" Rate="13" TotalPrice="1274.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="3458.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="106" Name="TNL R" NumberOfPacks="2" PreviousBalance="0" Rate="13" TotalPrice="1378.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="3619.5" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="P JAYAMMA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
 </ItemBought>
 </Date>
 </Dates>
