@@ -7875,10 +7875,11 @@
 <Date Name="17/11/2017">
 <ItemBought Miscellaneous="0" Name="CHOWCHOW" NoOfPockets="1" RatePerKG="9" TotalInKGs="82" UnloadingCharges="10" Vendor="SANTHOSHA">
 <ItemsSold>
-<ItemSold AmountBalance="153889.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="GA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="154924.0" AmountRecMode="" AmountReceived="0" BillNo="568" Kilograms="82" Name="GA" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="1035.0" TransportAndMiscExpenses="215" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="18/11/2017"/>
 </Dates>
 </Month>
 </Months>
