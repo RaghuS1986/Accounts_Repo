@@ -8128,10 +8128,11 @@
 </ItemBought>
 <ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="3" RatePerKG="64" TotalInKGs="293" UnloadingCharges="30" Vendor="SBS">
 <ItemsSold>
-<ItemSold AmountBalance="823404.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="TMRK" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="843024.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="293" Name="TMRK" NumberOfPacks="3" PreviousBalance="0" Rate="65" TotalPrice="19620.0" TransportAndMiscExpenses="575" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="23/11/2017"/>
 </Dates>
 </Month>
 </Months>
