@@ -2104,6 +2104,13 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="23/11/2017">
+<ItemBought Miscellaneous="0" Name="BEANS" NoOfPockets="1" RatePerKG="24" TotalInKGs="99" UnloadingCharges="10" Vendor="RPC">
+<ItemsSold>
+<ItemSold AmountBalance="308546.0" AmountRecMode="" AmountReceived="0" BillNo="646" Kilograms="99" Name="CN" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2485.0" TransportAndMiscExpenses="10" UnderMember="KIRAN"/>
+</ItemsSold>
+</ItemBought>
+</Date>
 </Dates>
 </Month>
 </Months>
@@ -6684,6 +6691,44 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="23/11/2017">
+<ItemBought Miscellaneous="0" Name="POTATO" NoOfPockets="3" RatePerKG="11" TotalInKGs="155" UnloadingCharges="30" Vendor="BHEEMESH">
+<ItemsSold>
+<ItemSold AmountBalance="77563.0" AmountRecMode="" AmountReceived="0" BillNo="1620" Kilograms="54" Name="LGL" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="594.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="29979.0" AmountRecMode="" AmountReceived="0" BillNo="1621" Kilograms="54" Name="VNR" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="648.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="0.0" AmountRecMode="CASH" AmountReceived="840" BillNo="" Kilograms="0" Name="RAMANNA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="564.0" AmountRecMode="" AmountReceived="0" BillNo="1622" Kilograms="47" Name="RAMANNA" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="564.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="BEET" NoOfPockets="1" RatePerKG="31" TotalInKGs="54" UnloadingCharges="10" Vendor="MURULI">
+<ItemsSold>
+<ItemSold AmountBalance="7824.0" AmountRecMode="" AmountReceived="0" BillNo="1623" Kilograms="54" Name="TNL R" NumberOfPacks="1" PreviousBalance="0" Rate="32" TotalPrice="1728.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="POTATO EVE" NoOfPockets="2" RatePerKG="11" TotalInKGs="105" UnloadingCharges="20" Vendor="BHEEMESH">
+<ItemsSold>
+<ItemSold AmountBalance="9084.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="105" Name="TNL R" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="1260.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="BEANS" NoOfPockets="5" RatePerKG="24" TotalInKGs="460" UnloadingCharges="50" Vendor="RPC">
+<ItemsSold>
+<ItemSold AmountBalance="32481.0" AmountRecMode="" AmountReceived="0" BillNo="1624" Kilograms="179" Name="TNLP" NumberOfPacks="2" PreviousBalance="0" Rate="25" TotalPrice="4475.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="2325.0" AmountRecMode="" AmountReceived="0" BillNo="1625" Kilograms="93" Name="TKS NAGA" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2325.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="11559.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="99" Name="TNL R" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2475.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="26227.0" AmountRecMode="" AmountReceived="0" BillNo="1626" Kilograms="89" Name="KAMALAMMA" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2225.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="CHOWCHOW" NoOfPockets="1" RatePerKG="9" TotalInKGs="80" UnloadingCharges="10" Vendor="DEVARAJU">
+<ItemsSold>
+<ItemSold AmountBalance="13020.0" AmountRecMode="" AmountReceived="0" BillNo="1627" Kilograms="80" Name="DNR" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="800.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="BEET" NoOfPockets="1" RatePerKG="27" TotalInKGs="53" UnloadingCharges="10" Vendor="MURULI">
+<ItemsSold>
+<ItemSold AmountBalance="13043.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="53" Name="TNL R" NumberOfPacks="1" PreviousBalance="0" Rate="28" TotalPrice="1484.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+</Date>
 </Dates>
 </Month>
 </Months>
@@ -8132,7 +8177,18 @@
 </ItemsSold>
 </ItemBought>
 </Date>
-<Date Name="23/11/2017"/>
+<Date Name="23/11/2017">
+<ItemBought Miscellaneous="0" Name="BEANS" NoOfPockets="8" RatePerKG="24" TotalInKGs="723" UnloadingCharges="80" Vendor="RPC">
+<ItemsSold>
+<ItemSold AmountBalance="366089.0" AmountRecMode="" AmountReceived="0" BillNo="575" Kilograms="275" Name="BM H" NumberOfPacks="3" PreviousBalance="0" Rate="25" TotalPrice="6905.0" TransportAndMiscExpenses="30" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="454358.0" AmountRecMode="" AmountReceived="0" BillNo="576" Kilograms="90" Name="IS" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2260.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="195994.0" AmountRecMode="" AmountReceived="0" BillNo="577" Kilograms="92" Name="NHA" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2310.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="156220.0" AmountRecMode="" AmountReceived="0" BillNo="578" Kilograms="91" Name="KB" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2285.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="207875.0" AmountRecMode="" AmountReceived="0" BillNo="579" Kilograms="95" Name="GKT" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2385.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="41387.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="SLVT" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+</ItemsSold>
+</ItemBought>
+</Date>
 </Dates>
 </Month>
 </Months>
