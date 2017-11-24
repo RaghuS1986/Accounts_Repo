@@ -8178,17 +8178,18 @@
 </ItemBought>
 </Date>
 <Date Name="23/11/2017">
-<ItemBought Miscellaneous="0" Name="BEANS" NoOfPockets="8" RatePerKG="24" TotalInKGs="723" UnloadingCharges="80" Vendor="RPC">
+<ItemBought Miscellaneous="0" Name="BEANS" NoOfPockets="8" RatePerKG="24" TotalInKGs="729" UnloadingCharges="80" Vendor="RPC">
 <ItemsSold>
 <ItemSold AmountBalance="366089.0" AmountRecMode="" AmountReceived="0" BillNo="575" Kilograms="275" Name="BM H" NumberOfPacks="3" PreviousBalance="0" Rate="25" TotalPrice="6905.0" TransportAndMiscExpenses="30" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="454358.0" AmountRecMode="" AmountReceived="0" BillNo="576" Kilograms="90" Name="IS" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2260.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="195994.0" AmountRecMode="" AmountReceived="0" BillNo="577" Kilograms="92" Name="NHA" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2310.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="156220.0" AmountRecMode="" AmountReceived="0" BillNo="578" Kilograms="91" Name="KB" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2285.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="207875.0" AmountRecMode="" AmountReceived="0" BillNo="579" Kilograms="95" Name="GKT" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2385.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="41387.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="SLVT" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="43547.0" AmountRecMode="" AmountReceived="0" BillNo="580" Kilograms="86" Name="SLVT" NumberOfPacks="1" PreviousBalance="0" Rate="25" TotalPrice="2160.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="24/11/2017"/>
 </Dates>
 </Month>
 </Months>
