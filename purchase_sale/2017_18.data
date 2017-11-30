@@ -2194,7 +2194,7 @@
 <ItemSold AmountBalance="251745.0" AmountRecMode="CASH" AmountReceived="250000" BillNo="660" Kilograms="284" Name="SGP" NumberOfPacks="4" PreviousBalance="0" Rate="62" TotalPrice="17968.0" TransportAndMiscExpenses="360" UnderMember="KIRAN"/>
 <ItemSold AmountBalance="289434.0" AmountRecMode="" AmountReceived="0" BillNo="661" Kilograms="284" Name="SS" NumberOfPacks="4" PreviousBalance="0" Rate="62" TotalPrice="17968.0" TransportAndMiscExpenses="360" UnderMember="KIRAN"/>
 <ItemSold AmountBalance="440676.0" AmountRecMode="" AmountReceived="0" BillNo="662" Kilograms="143" Name="SI KR" NumberOfPacks="2" PreviousBalance="0" Rate="62" TotalPrice="9046.0" TransportAndMiscExpenses="180" UnderMember="KIRAN"/>
-<ItemSold AmountBalance="78279.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="SIRA RAJANNA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="82957.0" AmountRecMode="" AmountReceived="0" BillNo="663" Kilograms="74" Name="SIRA RAJANNA" NumberOfPacks="1" PreviousBalance="0" Rate="62" TotalPrice="4678.0" TransportAndMiscExpenses="90" UnderMember="KIRAN"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -8562,6 +8562,7 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="30/11/2017"/>
 </Dates>
 </Month>
 </Months>
