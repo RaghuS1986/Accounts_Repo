@@ -3392,7 +3392,7 @@
 <ItemSold AmountBalance="304251.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="66" Name="CN" NumberOfPacks="1" PreviousBalance="0" Rate="16" TotalPrice="1056.0" TransportAndMiscExpenses="0" UnderMember="KIRAN"/>
 </ItemsSold>
 </ItemBought>
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="21" RatePerKG="0" TotalInKGs="1994" UnloadingCharges="210" Vendor="KCR">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="21" RatePerKG="27" TotalInKGs="1994" UnloadingCharges="210" Vendor="KCR">
 <ItemsSold>
 <ItemSold AmountBalance="360818.0" AmountRecMode="" AmountReceived="0" BillNo="945" Kilograms="377" Name="DHK" NumberOfPacks="4" PreviousBalance="0" Rate="28" TotalPrice="10596.0" TransportAndMiscExpenses="40" UnderMember="KIRAN"/>
 <ItemSold AmountBalance="7683.0" AmountRecMode="" AmountReceived="0" BillNo="946" Kilograms="81" Name="HNA" NumberOfPacks="1" PreviousBalance="5345" Rate="28" TotalPrice="2338.0" TransportAndMiscExpenses="70" UnderMember="KIRAN"/>
@@ -13073,10 +13073,11 @@
 <ItemsSold>
 <ItemSold AmountBalance="963126.0" AmountRecMode="" AmountReceived="0" BillNo="866" Kilograms="964" Name="MGS" NumberOfPacks="10" PreviousBalance="0" Rate="26" TotalPrice="27214.0" TransportAndMiscExpenses="2150" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="693197.0" AmountRecMode="" AmountReceived="0" BillNo="867" Kilograms="374" Name="TMRK" NumberOfPacks="4" PreviousBalance="0" Rate="26" TotalPrice="10184.0" TransportAndMiscExpenses="460" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="294059.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="NG" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="313263.0" AmountRecMode="" AmountReceived="0" BillNo="868" Kilograms="734" Name="NG" NumberOfPacks="8" PreviousBalance="0" Rate="26" TotalPrice="19204.0" TransportAndMiscExpenses="120" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="09/01/2018"/>
 </Dates>
 </Month>
 </Months>
