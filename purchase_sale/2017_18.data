@@ -843,7 +843,7 @@
 <ItemSold AmountBalance="31096.0" AmountRecMode="" AmountReceived="0" BillNo="160" Kilograms="102" Name="PM" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1304.0" TransportAndMiscExpenses="80" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="7087.0" AmountRecMode="CASH" AmountReceived="2000" BillNo="161" Kilograms="188" Name="NAK" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2256.0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="36366.0" AmountRecMode="CASH" AmountReceived="2000" BillNo="162" Kilograms="178" Name="MAU" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2136.0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
-<ItemSold AmountBalance="1479020.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="CML" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
+<ItemSold AmountBalance="1487165.0" AmountRecMode="" AmountReceived="0" BillNo="163" Kilograms="670" Name="CML" NumberOfPacks="7" PreviousBalance="0" Rate="12" TotalPrice="8145.0" TransportAndMiscExpenses="105" UnderMember="NAVEEN"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -13041,6 +13041,7 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="04/02/2018"/>
 </Dates>
 </Month>
 </Months>
