@@ -898,7 +898,7 @@
 <Date Name="08/02/2018">
 <ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="12" RatePerKG="9" TotalInKGs="1110" UnloadingCharges="120" Vendor="SBR">
 <ItemsSold>
-<ItemSold AmountBalance="1502341.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="CML" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
+<ItemSold AmountBalance="1513621.0" AmountRecMode="" AmountReceived="0" BillNo="173" Kilograms="1110" Name="CML" NumberOfPacks="12" PreviousBalance="0" Rate="10" TotalPrice="11280.0" TransportAndMiscExpenses="180" UnderMember="NAVEEN"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -13481,6 +13481,7 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="09/02/2018"/>
 </Dates>
 </Month>
 </Months>
