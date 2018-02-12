@@ -13823,7 +13823,7 @@
 <ItemsSold>
 <ItemSold AmountBalance="50708.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="200" Name="TRM" NumberOfPacks="2" PreviousBalance="0" Rate="3" TotalPrice="600.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 <ItemSold AmountBalance="0.0" AmountRecMode="CASH AND CLEARD" AmountReceived="1004" BillNo="" Kilograms="0" Name="MANJU" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
-<ItemSold AmountBalance="1036.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="TMN" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="0.0" AmountRecMode="CASH AND CLEARD" AmountReceived="1036" BillNo="" Kilograms="0" Name="TMN" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -16934,6 +16934,7 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="12/02/2018"/>
 </Dates>
 </Month>
 </Months>
