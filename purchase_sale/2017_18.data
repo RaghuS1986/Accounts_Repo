@@ -4606,7 +4606,7 @@
 <ItemSold AmountBalance="18375.0" AmountRecMode="" AmountReceived="0" BillNo="1263" Kilograms="191" Name="TGP" NumberOfPacks="2" PreviousBalance="0" Rate="10" TotalPrice="2050.0" TransportAndMiscExpenses="140" UnderMember="KIRAN"/>
 <ItemSold AmountBalance="67837.0" AmountRecMode="" AmountReceived="0" BillNo="1264" Kilograms="93" Name="SIRA RAJANNA" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="1000.0" TransportAndMiscExpenses="70" UnderMember="KIRAN"/>
 <ItemSold AmountBalance="344915.0" AmountRecMode="" AmountReceived="0" BillNo="1265" Kilograms="280" Name="DHK" NumberOfPacks="3" PreviousBalance="0" Rate="10" TotalPrice="2830.0" TransportAndMiscExpenses="30" UnderMember="KIRAN"/>
-<ItemSold AmountBalance="67941.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="RA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="69851.0" AmountRecMode="" AmountReceived="0" BillNo="1266" Kilograms="189" Name="RA" NumberOfPacks="2" PreviousBalance="0" Rate="10" TotalPrice="1910.0" TransportAndMiscExpenses="20" UnderMember="KIRAN"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -17186,6 +17186,7 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="15/02/2018"/>
 </Dates>
 </Month>
 </Months>
