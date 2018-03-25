@@ -1054,50 +1054,49 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 										}
 									}
 
-										
-										List<String> tempList= new ArrayList<String>();
-										for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
-											List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
-											double amtRecTempInCash = 0.0;
-											double amtRecTempInAcc = 0.0;
-											for (String string : amtReceived) {
-												String[] val = string.split("/");
-												if (val.length > 1 && val[1].startsWith("CASH")) {
-													amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
-												} else if (val.length > 1 && val[1].startsWith("ACC")) {
-													amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
-												}
-											}
-											int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
-													.indexOf(key);
-											receiptNum = receiptNum + 1;
-											if (amtRecTempInCash > 0.0) {
-												tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
-														+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
-																: "\t\t")
-														+ "CASH\t\t" + key.getPersonName());
-											}
-											if (amtRecTempInAcc > 0.0) {
-												tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
-														+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
-																: "\t\t")
-														+ "ACC\t\t" + key.getPersonName());
+									List<String> tempList = new ArrayList<String>();
+									for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
+										List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
+										double amtRecTempInCash = 0.0;
+										double amtRecTempInAcc = 0.0;
+										for (String string : amtReceived) {
+											String[] val = string.split("/");
+											if (val.length > 1 && val[1].startsWith("CASH")) {
+												amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
+											} else if (val.length > 1 && val[1].startsWith("ACC")) {
+												amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
 											}
 										}
-										
-										if (!tempList.isEmpty()) {
-											strings.add("\n\n\n					RECEIPTS					");
-											strings.add(
-													"-------------------------------------------------------------------------");
-											strings.add("Date		Receipt	Amount		Amount	Party");
-											strings.add("		number	received		mode		name");
-											strings.add(
-													"-------------------------------------------------------------------------");
-											for (String temp : tempList) {
-												strings.add(temp);
-											}
+										int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
+												.indexOf(key);
+										receiptNum = receiptNum + 1;
+										if (amtRecTempInCash > 0.0) {
+											tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
+													+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
+															: "\t\t")
+													+ "CASH\t\t" + key.getPersonName());
 										}
-										
+										if (amtRecTempInAcc > 0.0) {
+											tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
+													+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
+															: "\t\t")
+													+ "ACC\t\t" + key.getPersonName());
+										}
+									}
+
+									if (!tempList.isEmpty()) {
+										strings.add("\n\n\n					RECEIPTS					");
+										strings.add(
+												"-------------------------------------------------------------------------");
+										strings.add("Date		Receipt	Amount		Amount	Party");
+										strings.add("		number	received		mode		name");
+										strings.add(
+												"-------------------------------------------------------------------------");
+										for (String temp : tempList) {
+											strings.add(temp);
+										}
+									}
+
 									fw = new FileWriter(file);
 									bw = new BufferedWriter(fw);
 									for (String string : strings) {
@@ -1419,7 +1418,8 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 										started = true;
 										for (ItemBought itmBt : date.getItemsBought()) {
 											for (ItemSold itmSld : itmBt.getItemsSold()) {
-												if (itmSld.getPersonName().equals(personNameTxt.getText().trim())) {
+												if (itmSld.getPersonName()
+														.equalsIgnoreCase(personNameTxt.getText().trim())) {
 													itmSoldToDateMap.put(itmSld, date);
 													itmSoldToBtMap.put(itmSld, itmBt);
 												}
@@ -1443,12 +1443,6 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 								try {
 									List<String> strings = new ArrayList<>();
 									strings.add("Person Name\t\t\t\t- " + personNameTxt.getText());
-									for (ItemSold itemSold : itmSoldToDateMap.keySet()) {
-										if (itemSold.getBillNo() != null && itemSold.getBillNo().trim().length() > 0) {
-											strings.add("Bill Number\t\t\t\t- " + itemSold.getBillNo());
-											break;
-										}
-									}
 									strings.add("---------------------------------------------------------------");
 
 									for (ItemSold itemSold : itmSoldToDateMap.keySet()) {
@@ -1458,6 +1452,27 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 
 										if (dt != null && dt.getName().trim().length() > 0) {
 											strings.add("Date\t\t\t\t\t- " + dt.getName());
+										}
+
+										if (itemSold.getBillNo() != null && itemSold.getBillNo().trim().length() > 0) {
+											strings.add("Bill Number\t\t\t\t- " + itemSold.getBillNo());
+										} else {
+											boolean updatd=false;
+											for (ItemBought itmBt : dt.getItemsBought()) {
+												if (updatd) {
+													break;
+												}
+												for (ItemSold itmSld : itmBt.getItemsSold()) {
+													if (itmSld.getPersonName()
+															.equalsIgnoreCase(itemSold.getPersonName())
+															&& itmSld.getBillNo() != null
+															&& itmSld.getBillNo().trim().length() > 0) {
+														strings.add("Bill Number\t\t\t\t- " + itmSld.getBillNo());
+														updatd=true;
+														break;
+													}
+												}
+											}
 										}
 
 										if (itemBought != null && itemBought.getName().trim().length() > 0) {
