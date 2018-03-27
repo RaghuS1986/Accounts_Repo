@@ -21359,10 +21359,11 @@
 <ItemSold AmountBalance="445353.0" AmountRecMode="" AmountReceived="0" BillNo="1566" Kilograms="99" Name="NHA" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1198.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="187309.0" AmountRecMode="" AmountReceived="0" BillNo="1567" Kilograms="515" Name="TA" NumberOfPacks="6" PreviousBalance="0" Rate="12" TotalPrice="7170.0" TransportAndMiscExpenses="990" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="205239.0" AmountRecMode="" AmountReceived="0" BillNo="1568" Kilograms="103" Name="TNR" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1351.0" TransportAndMiscExpenses="115" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="49394.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="BRA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="51692.0" AmountRecMode="" AmountReceived="0" BillNo="1569" Kilograms="164" Name="BRA" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2298.0" TransportAndMiscExpenses="330" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="27/03/2018"/>
 </Dates>
 </Month>
 </Months>
