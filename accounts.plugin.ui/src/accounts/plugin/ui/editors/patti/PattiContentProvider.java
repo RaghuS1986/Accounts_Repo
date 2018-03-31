@@ -7,6 +7,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import accounts.plugin.model.classes.Date;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.Month;
+import accounts.plugin.model.classes.Year;
 import accounts.plugin.model.patti.Patti;
 
 public class PattiContentProvider implements ITreeContentProvider {
@@ -15,7 +16,10 @@ public class PattiContentProvider implements ITreeContentProvider {
 			return ((Patti) arg0).getMembers().toArray();
 		}
 		if ((arg0 instanceof Member)) {
-			return ((Member) arg0).getMonths().toArray();
+			return ((Member) arg0).getYears().toArray();
+		}
+		if ((arg0 instanceof Year)) {
+			return ((Year) arg0).getMonths().toArray();
 		}
 		if ((arg0 instanceof Month)) {
 			return ((Month) arg0).getDates().toArray();
@@ -38,7 +42,7 @@ public class PattiContentProvider implements ITreeContentProvider {
 	}
 
 	public boolean hasChildren(Object arg0) {
-		if (((arg0 instanceof Patti)) || ((arg0 instanceof Member)) || ((arg0 instanceof Month))
+		if (((arg0 instanceof Patti)) || ((arg0 instanceof Member)) ||((arg0 instanceof Year)) || ((arg0 instanceof Month))
 				|| ((arg0 instanceof Date))) {
 			return true;
 		}

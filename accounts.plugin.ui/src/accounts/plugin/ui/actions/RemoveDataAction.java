@@ -15,6 +15,7 @@ import accounts.plugin.model.classes.Date;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
 import accounts.plugin.model.classes.Month;
+import accounts.plugin.model.classes.Year;
 import accounts.plugin.model.patti.Patti;
 import accounts.plugin.ui.editors.EditorInterface;
 
@@ -47,7 +48,8 @@ public class RemoveDataAction extends Action {
 					members = model.getMembers();
 				}
 				for (Member mem : members) {
-					for (Month mon : mem.getMonths()) {
+					for (Year year : mem.getYears()) {
+					for (Month mon : year.getMonths()) {
 						Iterator<Date> iterator = mon.getDates().iterator();
 						while (iterator.hasNext()) {
 							Date date = (Date) iterator.next();
@@ -56,6 +58,7 @@ public class RemoveDataAction extends Action {
 								break;
 							}
 						}
+					}
 					}
 				}
 			}

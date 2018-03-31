@@ -13,6 +13,7 @@ import accounts.plugin.model.classes.ItemSold;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
 import accounts.plugin.model.classes.Month;
+import accounts.plugin.model.classes.Year;
 import accounts.plugin.ui.Utility;
 
 public class PreviousBalEditingSupport extends EditingSupport {
@@ -38,23 +39,25 @@ public class PreviousBalEditingSupport extends EditingSupport {
 				}
 			}
 			int counter = 0;
-			for (Month mon : mem.getMonths()) {
-				for (Date date : mon.getDates()) {
-					if (counter > 0) {
-						break;
-					}
-					for (ItemBought itemsBought : date.getItemsBought()) {
+			for (Year yr : mem.getYears()) {
+				for (Month mon : yr.getMonths()) {
+					for (Date date : mon.getDates()) {
 						if (counter > 0) {
 							break;
 						}
-						for (ItemSold itmSold : itemsBought.getItemsSold()) {
-							if (itmSold.getPersonName().equalsIgnoreCase(((ItemSold) arg0).getPersonName())) {
-								counter++;
-								if (itmSold.equals(arg0)) {
+						for (ItemBought itemsBought : date.getItemsBought()) {
+							if (counter > 0) {
+								break;
+							}
+							for (ItemSold itmSold : itemsBought.getItemsSold()) {
+								if (itmSold.getPersonName().equalsIgnoreCase(((ItemSold) arg0).getPersonName())) {
+									counter++;
+									if (itmSold.equals(arg0)) {
+										break;
+									}
+									isFirstEntry = false;
 									break;
 								}
-								isFirstEntry = false;
-								break;
 							}
 						}
 					}
@@ -103,26 +106,28 @@ public class PreviousBalEditingSupport extends EditingSupport {
 			boolean isFirstItem = false;
 			for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
 				if (mem.equals(member)) {
-					for (Month mon : mem.getMonths()) {
-						for (Date date : mon.getDates()) {
-							if (isFirstItem) {
-								break;
-							}
-							for (ItemBought itemsBought : date.getItemsBought()) {
+					for (Year yr : mem.getYears()) {
+						for (Month mon : yr.getMonths()) {
+							for (Date date : mon.getDates()) {
 								if (isFirstItem) {
 									break;
 								}
-								for (ItemSold itmSold : itemsBought.getItemsSold()) {
-									if (itmSold.getPersonName().equalsIgnoreCase(soldItem.getPersonName())) {
-										if (!itmSold.equals(soldItem)) {
-											previousItemSold = itmSold;
-										} else {
-											if (previousItemSold != null) {
+								for (ItemBought itemsBought : date.getItemsBought()) {
+									if (isFirstItem) {
+										break;
+									}
+									for (ItemSold itmSold : itemsBought.getItemsSold()) {
+										if (itmSold.getPersonName().equalsIgnoreCase(soldItem.getPersonName())) {
+											if (!itmSold.equals(soldItem)) {
+												previousItemSold = itmSold;
+											} else {
+												if (previousItemSold != null) {
+													break;
+												}
+												isFirstItem = true;
+
 												break;
 											}
-											isFirstItem = true;
-
-											break;
 										}
 									}
 								}

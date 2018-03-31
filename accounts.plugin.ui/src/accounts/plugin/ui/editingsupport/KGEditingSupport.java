@@ -15,6 +15,7 @@ import accounts.plugin.model.classes.ItemSold;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
 import accounts.plugin.model.classes.Month;
+import accounts.plugin.model.classes.Year;
 import accounts.plugin.ui.Utility;
 import accounts.plugin.ui.dialogs.KG_SaleDialog;
 
@@ -84,7 +85,8 @@ public class KGEditingSupport extends EditingSupport {
 			boolean isFirstItem = false;
 			for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
 				if (mem.equals(member)) {
-					for (Month mon : mem.getMonths()) {
+					for (Year yr : mem.getYears()) {
+					for (Month mon : yr.getMonths()) {
 					for (Date date : mon.getDates()) {
 						if (isFirstItem) {
 							break;
@@ -109,6 +111,7 @@ public class KGEditingSupport extends EditingSupport {
 						}
 					}
 					}
+				}
 				}
 			}
 			double balReceived = Utility
