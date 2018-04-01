@@ -21825,7 +21825,7 @@
 <ItemSold AmountBalance="416970.0" AmountRecMode="" AmountReceived="0" BillNo="1609" Kilograms="92" Name="BM H" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="930.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="59974.0" AmountRecMode="" AmountReceived="0" BillNo="1610" Kilograms="174" Name="BRA" NumberOfPacks="2" PreviousBalance="0" Rate="10" TotalPrice="2070.0" TransportAndMiscExpenses="330" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="271471.0" AmountRecMode="" AmountReceived="0" BillNo="1611" Kilograms="528" Name="MD" NumberOfPacks="6" PreviousBalance="0" Rate="10" TotalPrice="6270.0" TransportAndMiscExpenses="990" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="46494.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="BK" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="47344.0" AmountRecMode="" AmountReceived="0" BillNo="1612" Kilograms="85" Name="BK" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="850.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
