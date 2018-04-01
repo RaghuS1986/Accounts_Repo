@@ -37,8 +37,8 @@ public class BillNoEditingSupport extends EditingSupport {
 			TreePath[] paths = selection.getPaths();
 			Date date = null;
 			for (TreePath treePath : paths) {
-				if ((treePath.getSegment(3) instanceof Date)) {
-					date = (Date) treePath.getSegment(3);
+				if ((treePath.getSegment(4) instanceof Date)) {
+					date = (Date) treePath.getSegment(4);
 					break;
 				}
 			}

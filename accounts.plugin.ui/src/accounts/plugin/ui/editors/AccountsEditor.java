@@ -59,14 +59,17 @@ import accounts.plugin.model.classes.ItemSold;
 import accounts.plugin.model.classes.Member;
 import accounts.plugin.model.classes.ModelManager;
 import accounts.plugin.model.classes.Month;
+import accounts.plugin.model.classes.Year;
 import accounts.plugin.ui.Utility;
 import accounts.plugin.ui.actions.AddDateAction;
 import accounts.plugin.ui.actions.AddItemsAction;
 import accounts.plugin.ui.actions.AddMemberAction;
 import accounts.plugin.ui.actions.AddMonthAction;
+import accounts.plugin.ui.actions.AddYearAction;
 import accounts.plugin.ui.actions.RemoveDataAction;
 import accounts.plugin.ui.actions.RemoveItemsBought;
 import accounts.plugin.ui.actions.RemoveMonthAction;
+import accounts.plugin.ui.actions.RemoveYearAction;
 import accounts.plugin.ui.editingsupport.AmtRecEditingSupport;
 import accounts.plugin.ui.editingsupport.AmtRecModeEditingSupport;
 import accounts.plugin.ui.editingsupport.BillNoEditingSupport;
@@ -84,11 +87,13 @@ import accounts.plugin.ui.editingsupport.UnloadingChargesEditingSupport;
 
 public class AccountsEditor extends EditorPart implements EditorInterface {
 	private Action addMemberAction;
+	private Action addYearAction;
 	private Action addMonthAction;
 	private Action addDateAction;
 	private Action addItemsAction;
 	private Action addSoldItemsAction;
 	private Action removeMemberAction;
+	private Action removeYearAction;
 	private Action removeMonthAction;
 	private Action removeDateAction;
 	private Action removeItemsBoughtAction;
@@ -159,6 +164,8 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					iconPath = "/icons/account.gif";
 				} else if ((element instanceof Member)) {
 					iconPath = "/icons/person.gif";
+				} else if ((element instanceof Year)) {
+					iconPath = "/icons/year.png";
 				} else if ((element instanceof Month)) {
 					iconPath = "/icons/month.gif";
 				} else if ((element instanceof accounts.plugin.model.classes.Date)) {
@@ -508,6 +515,10 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 		this.addMemberAction.setText("Add Member");
 		manager.add(this.addMemberAction);
 
+		this.addYearAction = new AddYearAction(this.treeViewer, this);
+		this.addYearAction.setText("Add Year");
+		manager.add(this.addYearAction);
+
 		this.addMonthAction = new AddMonthAction(this.treeViewer, this);
 		this.addMonthAction.setText("Add Month");
 		manager.add(this.addMonthAction);
@@ -542,12 +553,14 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 						ItemSold previousItemSold = null;
 						for (Member mem : ModelManager.getInstance().getModel().getMembers()) {
 							if (mem.equals(member)) {
-								for (Month mon : mem.getMonths()) {
-									for (Date date : mon.getDates()) {
-										for (ItemBought itemsBought : date.getItemsBought()) {
-											for (ItemSold itemSold : itemsBought.getItemsSold()) {
-												if (itemSold.getPersonName().equalsIgnoreCase(dialog.getValue())) {
-													previousItemSold = itemSold;
+								for (Year yr : mem.getYears()) {
+									for (Month mon : yr.getMonths()) {
+										for (Date date : mon.getDates()) {
+											for (ItemBought itemsBought : date.getItemsBought()) {
+												for (ItemSold itemSold : itemsBought.getItemsSold()) {
+													if (itemSold.getPersonName().equalsIgnoreCase(dialog.getValue())) {
+														previousItemSold = itemSold;
+													}
 												}
 											}
 										}
@@ -595,6 +608,10 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 		this.removeMemberAction.setText("Remove Member");
 		manager.add(this.removeMemberAction);
 
+		this.removeYearAction = new RemoveYearAction(this.treeViewer, this, false);
+		this.removeYearAction.setText("Remove Year");
+		manager.add(this.removeYearAction);
+		
 		this.removeMonthAction = new RemoveMonthAction(this.treeViewer, this, false);
 		this.removeMonthAction.setText("Remove Month");
 		manager.add(this.removeMonthAction);
@@ -619,15 +636,17 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					if (delete) {
 						Accounts model = ModelManager.getInstance().getModel();
 						for (Member mem : model.getMembers()) {
-							for (Month mon : mem.getMonths()) {
-								for (Date date : mon.getDates()) {
-									for (ItemBought itmsBought : date.getItemsBought()) {
-										Iterator<ItemSold> iterator = itmsBought.getItemsSold().iterator();
-										while (iterator.hasNext()) {
-											ItemSold itemSold = (ItemSold) iterator.next();
-											if (firstElement.equals(itemSold)) {
-												iterator.remove();
-												break;
+							for (Year yr : mem.getYears()) {
+								for (Month mon : yr.getMonths()) {
+									for (Date date : mon.getDates()) {
+										for (ItemBought itmsBought : date.getItemsBought()) {
+											Iterator<ItemSold> iterator = itmsBought.getItemsSold().iterator();
+											while (iterator.hasNext()) {
+												ItemSold itemSold = (ItemSold) iterator.next();
+												if (firstElement.equals(itemSold)) {
+													iterator.remove();
+													break;
+												}
 											}
 										}
 									}
@@ -729,30 +748,33 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 									Map<String, String> amtBalanceMap = new HashMap<>();
 									if (member != null) {
 										boolean temp = false;
-										for (Month month : member.getMonths()) {
-											if (temp) {
-												break;
-											}
-											for (Date date : month.getDates()) {
-												if (!date.equals(firstElement)) {
-													for (ItemBought itmBt : date.getItemsBought()) {
-														for (ItemSold itmSold : itmBt.getItemsSold()) {
-															double val = Utility
-																	.converToDouble(itmSold.getPreviousBal() != null
-																			? itmSold.getPreviousBal()
-																			: "0.0");
-															double temp2 = 0.0;
-															if (val > 0.0) {
-																temp2 = val - Utility
-																		.converToDouble(itmSold.getAmtReceived());
-															}
-															amtBalanceMap.put(itmSold.getPersonName(),
-																	val > 0.0 ? temp2 + "" : itmSold.getAmtBalance());
-														}
-													}
-												} else {
-													temp = true;
+										for (Year yr : member.getYears()) {
+											for (Month month : yr.getMonths()) {
+												if (temp) {
 													break;
+												}
+												for (Date date : month.getDates()) {
+													if (!date.equals(firstElement)) {
+														for (ItemBought itmBt : date.getItemsBought()) {
+															for (ItemSold itmSold : itmBt.getItemsSold()) {
+																double val = Utility
+																		.converToDouble(itmSold.getPreviousBal() != null
+																				? itmSold.getPreviousBal()
+																				: "0.0");
+																double temp2 = 0.0;
+																if (val > 0.0) {
+																	temp2 = val - Utility
+																			.converToDouble(itmSold.getAmtReceived());
+																}
+																amtBalanceMap.put(itmSold.getPersonName(),
+																		val > 0.0 ? temp2 + ""
+																				: itmSold.getAmtBalance());
+															}
+														}
+													} else {
+														temp = true;
+														break;
+													}
 												}
 											}
 										}
@@ -811,22 +833,24 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 
 										String amtbalanceFromPreviousDay = amtBalanceMap.get(key);
 										if (amtbalanceFromPreviousDay == null) {
-											for (Month mnt : member.getMonths()) {
-												if (amtbalanceFromPreviousDay != null) {
-													break;
-												}
-												for (Date date : mnt.getDates()) {
+											for (Year yr : member.getYears()) {
+												for (Month mnt : yr.getMonths()) {
 													if (amtbalanceFromPreviousDay != null) {
 														break;
 													}
-													for (ItemBought itmBt : date.getItemsBought()) {
+													for (Date date : mnt.getDates()) {
 														if (amtbalanceFromPreviousDay != null) {
 															break;
 														}
-														for (ItemSold itmSld : itmBt.getItemsSold()) {
-															if (key.equals(itmSld.getPersonName())) {
-																amtbalanceFromPreviousDay = itmSld.getPreviousBal();
+														for (ItemBought itmBt : date.getItemsBought()) {
+															if (amtbalanceFromPreviousDay != null) {
 																break;
+															}
+															for (ItemSold itmSld : itmBt.getItemsSold()) {
+																if (key.equals(itmSld.getPersonName())) {
+																	amtbalanceFromPreviousDay = itmSld.getPreviousBal();
+																	break;
+																}
 															}
 														}
 													}
@@ -1054,50 +1078,49 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 										}
 									}
 
-										
-										List<String> tempList= new ArrayList<String>();
-										for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
-											List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
-											double amtRecTempInCash = 0.0;
-											double amtRecTempInAcc = 0.0;
-											for (String string : amtReceived) {
-												String[] val = string.split("/");
-												if (val.length > 1 && val[1].startsWith("CASH")) {
-													amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
-												} else if (val.length > 1 && val[1].startsWith("ACC")) {
-													amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
-												}
-											}
-											int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
-													.indexOf(key);
-											receiptNum = receiptNum + 1;
-											if (amtRecTempInCash > 0.0) {
-												tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
-														+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
-																: "\t\t")
-														+ "CASH\t\t" + key.getPersonName());
-											}
-											if (amtRecTempInAcc > 0.0) {
-												tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
-														+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
-																: "\t\t")
-														+ "ACC\t\t" + key.getPersonName());
+									List<String> tempList = new ArrayList<String>();
+									for (ItemSold key : personNameToAmtReceivedForTheDay.keySet()) {
+										List<String> amtReceived = personNameToAmtReceivedForTheDay.get(key);
+										double amtRecTempInCash = 0.0;
+										double amtRecTempInAcc = 0.0;
+										for (String string : amtReceived) {
+											String[] val = string.split("/");
+											if (val.length > 1 && val[1].startsWith("CASH")) {
+												amtRecTempInCash += Utility.converToDouble(val[0]).doubleValue();
+											} else if (val.length > 1 && val[1].startsWith("ACC")) {
+												amtRecTempInAcc += Utility.converToDouble(val[0]).doubleValue();
 											}
 										}
-										
-										if (!tempList.isEmpty()) {
-											strings.add("\n\n\n					RECEIPTS					");
-											strings.add(
-													"-------------------------------------------------------------------------");
-											strings.add("Date		Receipt	Amount		Amount	Party");
-											strings.add("		number	received		mode		name");
-											strings.add(
-													"-------------------------------------------------------------------------");
-											for (String temp : tempList) {
-												strings.add(temp);
-											}
+										int receiptNum = ModelManager.getInstance().getMapOfItemsSold().get(member)
+												.indexOf(key);
+										receiptNum = receiptNum + 1;
+										if (amtRecTempInCash > 0.0) {
+											tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInCash
+													+ (((amtRecTempInCash + "").toString()).length() <= 5 ? "\t\t\t"
+															: "\t\t")
+													+ "CASH\t\t" + key.getPersonName());
 										}
-										
+										if (amtRecTempInAcc > 0.0) {
+											tempList.add(date.getName() + "	" + receiptNum + "		" + amtRecTempInAcc
+													+ (((amtRecTempInAcc + "").toString()).length() <= 5 ? "\t\t\t"
+															: "\t\t")
+													+ "ACC\t\t" + key.getPersonName());
+										}
+									}
+
+									if (!tempList.isEmpty()) {
+										strings.add("\n\n\n					RECEIPTS					");
+										strings.add(
+												"-------------------------------------------------------------------------");
+										strings.add("Date		Receipt	Amount		Amount	Party");
+										strings.add("		number	received		mode		name");
+										strings.add(
+												"-------------------------------------------------------------------------");
+										for (String temp : tempList) {
+											strings.add(temp);
+										}
+									}
+
 									fw = new FileWriter(file);
 									bw = new BufferedWriter(fw);
 									for (String string : strings) {
@@ -1178,8 +1201,8 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 							TreePath[] paths = sel.getPaths();
 							Date dt = null;
 							for (TreePath treePath : paths) {
-								if ((treePath.getSegment(3) instanceof Date)) {
-									dt = (Date) treePath.getSegment(3);
+								if ((treePath.getSegment(4) instanceof Date)) {
+									dt = (Date) treePath.getSegment(4);
 									break;
 								}
 							}
@@ -1413,21 +1436,24 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 							boolean started = false;
 							Map<ItemSold, Date> itmSoldToDateMap = new LinkedHashMap<>();
 							Map<ItemSold, ItemBought> itmSoldToBtMap = new LinkedHashMap<>();
-							for (Month mnt : member.getMonths()) {
-								for (Date date : mnt.getDates()) {
-									if (date.getName().equals(startDateTxt.getText()) || started) {
-										started = true;
-										for (ItemBought itmBt : date.getItemsBought()) {
-											for (ItemSold itmSld : itmBt.getItemsSold()) {
-												if (itmSld.getPersonName().equals(personNameTxt.getText().trim())) {
-													itmSoldToDateMap.put(itmSld, date);
-													itmSoldToBtMap.put(itmSld, itmBt);
+							for (Year yr : member.getYears()) {
+								for (Month mnt : yr.getMonths()) {
+									for (Date date : mnt.getDates()) {
+										if (date.getName().equals(startDateTxt.getText()) || started) {
+											started = true;
+											for (ItemBought itmBt : date.getItemsBought()) {
+												for (ItemSold itmSld : itmBt.getItemsSold()) {
+													if (itmSld.getPersonName()
+															.equalsIgnoreCase(personNameTxt.getText().trim())) {
+														itmSoldToDateMap.put(itmSld, date);
+														itmSoldToBtMap.put(itmSld, itmBt);
+													}
 												}
 											}
 										}
-									}
-									if (date.getName().equals(endDateTxt.getText())) {
-										started = false;
+										if (date.getName().equals(endDateTxt.getText())) {
+											started = false;
+										}
 									}
 								}
 							}
@@ -1443,12 +1469,6 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 								try {
 									List<String> strings = new ArrayList<>();
 									strings.add("Person Name\t\t\t\t- " + personNameTxt.getText());
-									for (ItemSold itemSold : itmSoldToDateMap.keySet()) {
-										if (itemSold.getBillNo() != null && itemSold.getBillNo().trim().length() > 0) {
-											strings.add("Bill Number\t\t\t\t- " + itemSold.getBillNo());
-											break;
-										}
-									}
 									strings.add("---------------------------------------------------------------");
 
 									for (ItemSold itemSold : itmSoldToDateMap.keySet()) {
@@ -1458,6 +1478,27 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 
 										if (dt != null && dt.getName().trim().length() > 0) {
 											strings.add("Date\t\t\t\t\t- " + dt.getName());
+										}
+
+										if (itemSold.getBillNo() != null && itemSold.getBillNo().trim().length() > 0) {
+											strings.add("Bill Number\t\t\t\t- " + itemSold.getBillNo());
+										} else {
+											boolean updatd = false;
+											for (ItemBought itmBt : dt.getItemsBought()) {
+												if (updatd) {
+													break;
+												}
+												for (ItemSold itmSld : itmBt.getItemsSold()) {
+													if (itmSld.getPersonName()
+															.equalsIgnoreCase(itemSold.getPersonName())
+															&& itmSld.getBillNo() != null
+															&& itmSld.getBillNo().trim().length() > 0) {
+														strings.add("Bill Number\t\t\t\t- " + itmSld.getBillNo());
+														updatd = true;
+														break;
+													}
+												}
+											}
 										}
 
 										if (itemBought != null && itemBought.getName().trim().length() > 0) {
@@ -1579,11 +1620,13 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 				Object firstElement = AccountsEditor.this.treeViewer.getStructuredSelection().getFirstElement();
 				if ((firstElement instanceof Accounts)) {
 					AccountsEditor.this.addMemberAction.setEnabled(true);
+					AccountsEditor.this.addYearAction.setEnabled(false);
 					AccountsEditor.this.addDateAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
 					AccountsEditor.this.addItemsAction.setEnabled(false);
 					AccountsEditor.this.addSoldItemsAction.setEnabled(false);
 					AccountsEditor.this.removeMemberAction.setEnabled(false);
+					AccountsEditor.this.removeYearAction.setEnabled(false);
 					AccountsEditor.this.removeMonthAction.setEnabled(false);
 					AccountsEditor.this.removeDateAction.setEnabled(false);
 					AccountsEditor.this.removeItemsBoughtAction.setEnabled(false);
@@ -1594,11 +1637,13 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof Member)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
-					AccountsEditor.this.addMonthAction.setEnabled(true);
+					AccountsEditor.this.addYearAction.setEnabled(true);
+					AccountsEditor.this.addMonthAction.setEnabled(false);
 					AccountsEditor.this.addDateAction.setEnabled(false);
 					AccountsEditor.this.addItemsAction.setEnabled(false);
 					AccountsEditor.this.addSoldItemsAction.setEnabled(false);
 					AccountsEditor.this.removeMemberAction.setEnabled(true);
+					AccountsEditor.this.removeYearAction.setEnabled(false);
 					AccountsEditor.this.removeMonthAction.setEnabled(false);
 					AccountsEditor.this.removeDateAction.setEnabled(false);
 					AccountsEditor.this.removeItemsBoughtAction.setEnabled(false);
@@ -1607,13 +1652,32 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportSummary.setEnabled(false);
 					AccountsEditor.this.exportDaySummary.setEnabled(false);
 					AccountsEditor.this.exportPersonSaleData.setEnabled(true);
+				} else if ((firstElement instanceof Year)) {
+					AccountsEditor.this.addMemberAction.setEnabled(false);
+					AccountsEditor.this.addYearAction.setEnabled(false);
+					AccountsEditor.this.addMonthAction.setEnabled(true);
+					AccountsEditor.this.addDateAction.setEnabled(false);
+					AccountsEditor.this.addItemsAction.setEnabled(false);
+					AccountsEditor.this.addSoldItemsAction.setEnabled(false);
+					AccountsEditor.this.removeMemberAction.setEnabled(false);
+					AccountsEditor.this.removeYearAction.setEnabled(true);
+					AccountsEditor.this.removeMonthAction.setEnabled(false);
+					AccountsEditor.this.removeDateAction.setEnabled(false);
+					AccountsEditor.this.removeItemsBoughtAction.setEnabled(false);
+					AccountsEditor.this.removeItemsSoldAction.setEnabled(false);
+					AccountsEditor.this.exportData.setEnabled(false);
+					AccountsEditor.this.exportSummary.setEnabled(false);
+					AccountsEditor.this.exportDaySummary.setEnabled(false);
+					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof Month)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
+					AccountsEditor.this.addYearAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
 					AccountsEditor.this.addDateAction.setEnabled(true);
 					AccountsEditor.this.addItemsAction.setEnabled(false);
 					AccountsEditor.this.addSoldItemsAction.setEnabled(false);
 					AccountsEditor.this.removeMemberAction.setEnabled(false);
+					AccountsEditor.this.removeYearAction.setEnabled(false);
 					AccountsEditor.this.removeMonthAction.setEnabled(true);
 					AccountsEditor.this.removeDateAction.setEnabled(false);
 					AccountsEditor.this.removeItemsBoughtAction.setEnabled(false);
@@ -1624,11 +1688,13 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof accounts.plugin.model.classes.Date)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
+					AccountsEditor.this.addYearAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
 					AccountsEditor.this.addDateAction.setEnabled(false);
 					AccountsEditor.this.addItemsAction.setEnabled(true);
 					AccountsEditor.this.addSoldItemsAction.setEnabled(false);
 					AccountsEditor.this.removeMemberAction.setEnabled(false);
+					AccountsEditor.this.removeYearAction.setEnabled(false);
 					AccountsEditor.this.removeMonthAction.setEnabled(false);
 					AccountsEditor.this.removeDateAction.setEnabled(true);
 					AccountsEditor.this.removeItemsBoughtAction.setEnabled(false);
@@ -1639,11 +1705,13 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof ItemBought)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
+					AccountsEditor.this.addYearAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
 					AccountsEditor.this.addDateAction.setEnabled(false);
 					AccountsEditor.this.addItemsAction.setEnabled(false);
 					AccountsEditor.this.addSoldItemsAction.setEnabled(true);
 					AccountsEditor.this.removeMemberAction.setEnabled(false);
+					AccountsEditor.this.removeYearAction.setEnabled(false);
 					AccountsEditor.this.removeMonthAction.setEnabled(false);
 					AccountsEditor.this.removeDateAction.setEnabled(false);
 					AccountsEditor.this.removeItemsBoughtAction.setEnabled(true);
@@ -1654,11 +1722,13 @@ public class AccountsEditor extends EditorPart implements EditorInterface {
 					AccountsEditor.this.exportPersonSaleData.setEnabled(false);
 				} else if ((firstElement instanceof ItemSold)) {
 					AccountsEditor.this.addMemberAction.setEnabled(false);
+					AccountsEditor.this.addYearAction.setEnabled(false);
 					AccountsEditor.this.addMonthAction.setEnabled(false);
 					AccountsEditor.this.addDateAction.setEnabled(false);
 					AccountsEditor.this.addItemsAction.setEnabled(false);
 					AccountsEditor.this.addSoldItemsAction.setEnabled(false);
 					AccountsEditor.this.removeMemberAction.setEnabled(false);
+					AccountsEditor.this.removeYearAction.setEnabled(false);
 					AccountsEditor.this.removeMonthAction.setEnabled(false);
 					AccountsEditor.this.removeDateAction.setEnabled(false);
 					AccountsEditor.this.removeItemsBoughtAction.setEnabled(false);

@@ -9,12 +9,22 @@ public class Member extends AbstractModel {
 		setName(name);
 	}
 	
-	private List<Month> months;
+//	private List<Month> months;
+//
+//	public List<Month> getMonths() {
+//		if (months == null) {
+//			months = new ArrayList<>();
+//		}
+//		return months;
+//	}
+	
+	private List<Year> years;
 
-	public List<Month> getMonths() {
-		if (months == null) {
-			months = new ArrayList<>();
+	public List<Year> getYears() {
+		if (years == null) {
+			years = new ArrayList<>();
 		}
-		return months;
+		return years;
 	}
+	
 }

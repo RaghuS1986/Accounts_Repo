@@ -9,16 +9,15 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.widgets.Display;
 
 import accounts.plugin.model.classes.Member;
-import accounts.plugin.model.classes.Month;
 import accounts.plugin.model.classes.Year;
 import accounts.plugin.ui.editors.EditorInterface;
 
-public class AddMonthAction extends Action {
+public class AddYearAction extends Action {
 
 	private TreeViewer treeViewer;
 	  private EditorInterface editorIf;
 	  
-	  public AddMonthAction(TreeViewer treeViewer, EditorInterface editorPart)
+	  public AddYearAction(TreeViewer treeViewer, EditorInterface editorPart)
 	  {
 	    this.treeViewer = treeViewer;
 	    this.editorIf = editorPart;
@@ -31,13 +30,13 @@ public class AddMonthAction extends Action {
 	    TreeSelection sel = (TreeSelection) this.treeViewer.getSelection();
 		TreePath[] paths = sel.getPaths();
 	    Object firstElement = selection.getFirstElement();
-	    if (firstElement instanceof Year)
+	    if (firstElement instanceof Member)
 	    {
-	      InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Add Month", 
-	        "Enter the month name", "", null);
+	      InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), "Add Year", 
+	        "Enter the financial year name", "", null);
 	      if ((dialog.open() == 0) && (dialog.getValue().trim().length() > 0)) {
-	        if ((firstElement instanceof Year)) {
-	          ((Year)firstElement).getMonths().add(new Month(dialog.getValue()));
+	        if ((firstElement instanceof Member)) {
+	          ((Member)firstElement).getYears().add(new Year(dialog.getValue()));
 	        }
 	      }
 	    }
