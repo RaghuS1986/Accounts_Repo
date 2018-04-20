@@ -19432,7 +19432,7 @@
 <ItemSold AmountBalance="16396.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="25" Name="KAMALAMMA" NumberOfPacks="1" PreviousBalance="0" Rate="8" TotalPrice="200.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 </ItemsSold>
 </ItemBought>
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="38" RatePerKG="9" TotalInKGs="3203" UnloadingCharges="380" Vendor="HMS">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="37" RatePerKG="9" TotalInKGs="3287" UnloadingCharges="370" Vendor="HMS">
 <ItemsSold>
 <ItemSold AmountBalance="19374.0" AmountRecMode="" AmountReceived="0" BillNo="4668" Kilograms="456" Name="GDN" NumberOfPacks="5" PreviousBalance="0" Rate="10" TotalPrice="4560.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 <ItemSold AmountBalance="2752.0" AmountRecMode="" AmountReceived="0" BillNo="4669" Kilograms="87" Name="ST" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="870.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
@@ -19456,7 +19456,7 @@
 <ItemSold AmountBalance="76286.0" AmountRecMode="" AmountReceived="0" BillNo="4685" Kilograms="91" Name="LOKI" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="910.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 <ItemSold AmountBalance="1300.0" AmountRecMode="" AmountReceived="0" BillNo="4686" Kilograms="130" Name="Y" NumberOfPacks="2" PreviousBalance="0" Rate="10" TotalPrice="1300.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 <ItemSold AmountBalance="1097.5" AmountRecMode="CASH" AmountReceived="3000" BillNo="" Kilograms="0" Name="N MAGA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
-<ItemSold AmountBalance="1026.5" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="GULUR GIRI" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="0.5" AmountRecMode="CASH AND CLEARD" AmountReceived="1026" BillNo="" Kilograms="0" Name="GULUR GIRI" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -23642,6 +23642,7 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="20/4/2018"/>
 </Dates>
 </Month>
 </Months>
