@@ -24286,7 +24286,7 @@
 </ItemBought>
 </Date>
 <Date Name="26/04/2018">
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="49" RatePerKG="0" TotalInKGs="0" UnloadingCharges="490" Vendor="NRH">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="49" RatePerKG="10" TotalInKGs="4388" UnloadingCharges="490" Vendor="NRH">
 <ItemsSold>
 <ItemSold AmountBalance="892901.0" AmountRecMode="" AmountReceived="0" BillNo="1848" Kilograms="1100" Name="MGS" NumberOfPacks="12" PreviousBalance="0" Rate="12" TotalPrice="13380.0" TransportAndMiscExpenses="180" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="274944.0" AmountRecMode="" AmountReceived="0" BillNo="1849" Kilograms="940" Name="NG" NumberOfPacks="10" PreviousBalance="0" Rate="11" TotalPrice="11990.0" TransportAndMiscExpenses="1650" UnderMember="RAMAIAH"/>
@@ -24298,10 +24298,11 @@
 <ItemSold AmountBalance="431556.0" AmountRecMode="" AmountReceived="0" BillNo="1855" Kilograms="255" Name="IS" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="2835.0" TransportAndMiscExpenses="30" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="363357.0" AmountRecMode="" AmountReceived="0" BillNo="1856" Kilograms="176" Name="BM H" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="1956.0" TransportAndMiscExpenses="20" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="76864.0" AmountRecMode="" AmountReceived="0" BillNo="1857" Kilograms="91" Name="MC" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1011.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="312027.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="NSA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="315602.0" AmountRecMode="" AmountReceived="0" BillNo="1858" Kilograms="280" Name="NSA" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="3575.0" TransportAndMiscExpenses="495" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="27/04/2018"/>
 </Dates>
 </Month>
 </Months>
