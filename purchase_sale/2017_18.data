@@ -1744,15 +1744,23 @@
 </ItemBought>
 </Date>
 <Date Name="28/04/2018">
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="24" RatePerKG="9" TotalInKGs="2134" UnloadingCharges="240" Vendor="JTM">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="21" RatePerKG="9" TotalInKGs="1860" UnloadingCharges="210" Vendor="JTM">
 <ItemsSold>
 <ItemSold AmountBalance="87692.0" AmountRecMode="" AmountReceived="0" BillNo="384" Kilograms="269" Name="RM" NumberOfPacks="3" PreviousBalance="0" Rate="10" TotalPrice="2735.0" TransportAndMiscExpenses="45" UnderMember="NAVEEN"/>
-<ItemSold AmountBalance="75527.0" AmountRecMode="" AmountReceived="0" BillNo="385" Kilograms="778" Name="NA" NumberOfPacks="9" PreviousBalance="0" Rate="11" TotalPrice="8558.0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
+<ItemSold AmountBalance="72513.0" AmountRecMode="" AmountReceived="0" BillNo="385" Kilograms="504" Name="NA" NumberOfPacks="6" PreviousBalance="0" Rate="11" TotalPrice="5544.0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="25774.0" AmountRecMode="" AmountReceived="0" BillNo="386" Kilograms="86" Name="PM" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="940.0" TransportAndMiscExpenses="80" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="120788.0" AmountRecMode="" AmountReceived="0" BillNo="387" Kilograms="182" Name="HK" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="2032.0" TransportAndMiscExpenses="30" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="1528675.0" AmountRecMode="" AmountReceived="0" BillNo="388" Kilograms="545" Name="CML" NumberOfPacks="6" PreviousBalance="0" Rate="10" TotalPrice="5540.0" TransportAndMiscExpenses="90" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="33721.0" AmountRecMode="CASH" AmountReceived="1000" BillNo="" Kilograms="0" Name="MAU" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
 <ItemSold AmountBalance="6261.0" AmountRecMode="CASH" AmountReceived="2000" BillNo="389" Kilograms="274" Name="NAK" NumberOfPacks="3" PreviousBalance="0" Rate="10" TotalPrice="2740.0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
+</ItemsSold>
+</ItemBought>
+</Date>
+<Date Name="29/04/2018">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="5" RatePerKG="11" TotalInKGs="463" UnloadingCharges="50" Vendor="HMS">
+<ItemsSold>
+<ItemSold AmountBalance="25825.0" AmountRecMode="CASH" AmountReceived="50000" BillNo="390" Kilograms="276" Name="NA" NumberOfPacks="3" PreviousBalance="0" Rate="12" TotalPrice="3312.0" TransportAndMiscExpenses="0" UnderMember="NAVEEN"/>
+<ItemSold AmountBalance="89966.0" AmountRecMode="" AmountReceived="0" BillNo="391" Kilograms="187" Name="RM" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2274.0" TransportAndMiscExpenses="30" UnderMember="NAVEEN"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -6737,6 +6745,25 @@
 <ItemBought Miscellaneous="0" Name="BEET" NoOfPockets="1" RatePerKG="9" TotalInKGs="44" UnloadingCharges="10" Vendor="VNR">
 <ItemsSold>
 <ItemSold AmountBalance="19124.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="44" Name="GH" NumberOfPacks="1" PreviousBalance="0" Rate="9" TotalPrice="736.0" TransportAndMiscExpenses="340" UnderMember="KIRAN"/>
+</ItemsSold>
+</ItemBought>
+</Date>
+<Date Name="29/04/2018">
+<ItemBought Miscellaneous="0" Name="POTATO" NoOfPockets="6" RatePerKG="22" TotalInKGs="319" UnloadingCharges="60" Vendor="BHEEMESH">
+<ItemsSold>
+<ItemSold AmountBalance="116271.5" AmountRecMode="" AmountReceived="0" BillNo="1812" Kilograms="319" Name="CN" NumberOfPacks="6" PreviousBalance="0" Rate="22" TotalPrice="7018.0" TransportAndMiscExpenses="0" UnderMember="KIRAN"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="21" RatePerKG="10" TotalInKGs="1873" UnloadingCharges="210" Vendor="JTM">
+<ItemsSold>
+<ItemSold AmountBalance="402565.0" AmountRecMode="" AmountReceived="0" BillNo="1813" Kilograms="180" Name="SS" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2300.0" TransportAndMiscExpenses="140" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="341332.0" AmountRecMode="" AmountReceived="0" BillNo="1814" Kilograms="273" Name="SI KR" NumberOfPacks="3" PreviousBalance="0" Rate="12" TotalPrice="3486.0" TransportAndMiscExpenses="210" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="366954.0" AmountRecMode="" AmountReceived="0" BillNo="1815" Kilograms="264" Name="SGP" NumberOfPacks="3" PreviousBalance="0" Rate="12" TotalPrice="3378.0" TransportAndMiscExpenses="210" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="401479.0" AmountRecMode="" AmountReceived="0" BillNo="1816" Kilograms="369" Name="SF" NumberOfPacks="4" PreviousBalance="0" Rate="11" TotalPrice="4099.0" TransportAndMiscExpenses="40" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="324213.0" AmountRecMode="" AmountReceived="0" BillNo="1817" Kilograms="256" Name="DHK" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="2846.0" TransportAndMiscExpenses="30" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="118647.5" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="176" Name="CN" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="2376.0" TransportAndMiscExpenses="440" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="115504.0" AmountRecMode="" AmountReceived="0" BillNo="1818" Kilograms="264" Name="RA" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="2934.0" TransportAndMiscExpenses="30" UnderMember="KIRAN"/>
+<ItemSold AmountBalance="240090.0" AmountRecMode="" AmountReceived="0" BillNo="1819" Kilograms="91" Name="PBN" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1011.0" TransportAndMiscExpenses="10" UnderMember="KIRAN"/>
 </ItemsSold>
 </ItemBought>
 </Date>
@@ -20161,6 +20188,63 @@
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="29/04/2018">
+<ItemBought Miscellaneous="0" Name="POTATO" NoOfPockets="7" RatePerKG="22" TotalInKGs="366" UnloadingCharges="70" Vendor="BHEEMESH">
+<ItemsSold>
+<ItemSold AmountBalance="86939.0" AmountRecMode="" AmountReceived="0" BillNo="4881" Kilograms="156" Name="LGL" NumberOfPacks="3" PreviousBalance="0" Rate="22" TotalPrice="3432.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="3520.0" AmountRecMode="" AmountReceived="0" BillNo="4882" Kilograms="108" Name="SHANTHARAJU" NumberOfPacks="2" PreviousBalance="0" Rate="22" TotalPrice="2376.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="11702.0" AmountRecMode="" AmountReceived="0" BillNo="4883" Kilograms="51" Name="P RAJANNA" NumberOfPacks="1" PreviousBalance="0" Rate="22" TotalPrice="1122.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="1122.0" AmountRecMode="CASH" AmountReceived="1150" BillNo="4884" Kilograms="51" Name="PUTTARAJU" NumberOfPacks="1" PreviousBalance="0" Rate="22" TotalPrice="1122.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="5" RatePerKG="9" TotalInKGs="354" UnloadingCharges="50" Vendor="HJB">
+<ItemsSold>
+<ItemSold AmountBalance="11568.0" AmountRecMode="" AmountReceived="0" BillNo="4885" Kilograms="193" Name="PNK" NumberOfPacks="2" PreviousBalance="0" Rate="9" TotalPrice="1737.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="87439.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="50" Name="LGL" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="500.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="14709.5" AmountRecMode="CASH" AmountReceived="1000" BillNo="4886" Kilograms="91" Name="TSNP" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="910.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="353.0" AmountRecMode="" AmountReceived="0" BillNo="4887" Kilograms="20" Name="EERANNA" NumberOfPacks="1" PreviousBalance="0" Rate="10" TotalPrice="200.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="2320.0" AmountRecMode="CASH" AmountReceived="4000" BillNo="" Kilograms="0" Name="SLR" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="15822.0" AmountRecMode="CASH" AmountReceived="930" BillNo="" Kilograms="0" Name="RM GOOLI" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="36546.0" AmountRecMode="CASH" AmountReceived="1930" BillNo="" Kilograms="0" Name="BASAVA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="0.5" AmountRecMode="CASH AND CLEARD" AmountReceived="2680" BillNo="" Kilograms="0" Name="Y" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="0.0" AmountRecMode="CASH AND CLEARD" AmountReceived="3520" BillNo="" Kilograms="0" Name="SHANTHARAJU" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="16485.5" AmountRecMode="CASH" AmountReceived="2500" BillNo="" Kilograms="0" Name="KAMALAMMA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="POTATO EVE" NoOfPockets="4" RatePerKG="22" TotalInKGs="213" UnloadingCharges="40" Vendor="BHEEMESH">
+<ItemsSold>
+<ItemSold AmountBalance="40226.0" AmountRecMode="" AmountReceived="0" BillNo="4888" Kilograms="160" Name="BASAVA" NumberOfPacks="3" PreviousBalance="0" Rate="23" TotalPrice="3680.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="1219.0" AmountRecMode="CASH" AmountReceived="1242" BillNo="4889" Kilograms="53" Name="MANJU" NumberOfPacks="1" PreviousBalance="0" Rate="23" TotalPrice="1219.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="33" RatePerKG="11" TotalInKGs="3001" UnloadingCharges="330" Vendor="HMS">
+<ItemsSold>
+<ItemSold AmountBalance="370368.5" AmountRecMode="" AmountReceived="0" BillNo="4890" Kilograms="172" Name="TVR" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2064.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="44086.5" AmountRecMode="" AmountReceived="0" BillNo="4891" Kilograms="92" Name="HBR" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1104.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="50195.0" AmountRecMode="" AmountReceived="0" BillNo="4892" Kilograms="89" Name="THS" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1068.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="84441.5" AmountRecMode="" AmountReceived="0" BillNo="4893" Kilograms="89" Name="LOKI" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1068.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="4266.0" AmountRecMode="CASH" AmountReceived="3350" BillNo="4894" Kilograms="191" Name="TSK" NumberOfPacks="2" PreviousBalance="0" Rate="12" TotalPrice="2292.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="15777.5" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="89" Name="TSNP" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1068.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="16866.5" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="99" Name="TSNP" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1089.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="16483.0" AmountRecMode="" AmountReceived="0" BillNo="4895" Kilograms="65" Name="KALA" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="780.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="28192.0" AmountRecMode="" AmountReceived="0" BillNo="4896" Kilograms="275" Name="GDN" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="3025.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="19456.0" AmountRecMode="" AmountReceived="0" BillNo="4897" Kilograms="183" Name="MN S" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="2013.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="34474.0" AmountRecMode="" AmountReceived="0" BillNo="4898" Kilograms="97" Name="HG" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1067.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="23361.5" AmountRecMode="" AmountReceived="0" BillNo="4899" Kilograms="185" Name="HN" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="2035.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="9102.0" AmountRecMode="" AmountReceived="0" BillNo="4900" Kilograms="98" Name="P" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1078.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="8207.0" AmountRecMode="" AmountReceived="0" BillNo="4901" Kilograms="85" Name="GTN" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="935.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="3080.0" AmountRecMode="CASH" AmountReceived="1810" BillNo="4902" Kilograms="280" Name="CG" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="3080.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="3889.0" AmountRecMode="" AmountReceived="0" BillNo="4903" Kilograms="179" Name="KULLA RAMESH" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="1969.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="1045.5" AmountRecMode="" AmountReceived="0" BillNo="4904" Kilograms="95" Name="Y" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1045.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="10178.0" AmountRecMode="" AmountReceived="0" BillNo="4905" Kilograms="87" Name="GAVI" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="957.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="13614.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="186" Name="PNK" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="2046.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="946.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="86" Name="SHANTHARAJU" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="946.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="946.0" AmountRecMode="" AmountReceived="0" BillNo="4906" Kilograms="86" Name="VR" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="946.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="30108.0" AmountRecMode="" AmountReceived="0" BillNo="4907" Kilograms="98" Name="KGR" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1078.0" TransportAndMiscExpenses="0" UnderMember="GANGAMMA"/>
+<ItemSold AmountBalance="74723.5" AmountRecMode="" AmountReceived="0" BillNo="4908" Kilograms="95" Name="K" NumberOfPacks="1" PreviousBalance="0" Rate="11" TotalPrice="1105.0" TransportAndMiscExpenses="60" UnderMember="GANGAMMA"/>
+</ItemsSold>
+</ItemBought>
+</Date>
 </Dates>
 </Month>
 </Months>
@@ -24493,7 +24577,7 @@
 <ItemSold AmountBalance="50810.0" AmountRecMode="" AmountReceived="0" BillNo="1877" Kilograms="377" Name="BK" NumberOfPacks="4" PreviousBalance="0" Rate="8" TotalPrice="3016.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="31" RatePerKG="10" TotalInKGs="3267" UnloadingCharges="310" Vendor="HMS">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="37" RatePerKG="10" TotalInKGs="3267" UnloadingCharges="370" Vendor="HMS">
 <ItemsSold>
 <ItemSold AmountBalance="294996.0" AmountRecMode="" AmountReceived="0" BillNo="1878" Kilograms="534" Name="MD" NumberOfPacks="6" PreviousBalance="0" Rate="10" TotalPrice="6330.0" TransportAndMiscExpenses="990" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="902489.0" AmountRecMode="" AmountReceived="0" BillNo="1879" Kilograms="858" Name="MGS" NumberOfPacks="10" PreviousBalance="0" Rate="11" TotalPrice="9588.0" TransportAndMiscExpenses="150" UnderMember="RAMAIAH"/>
@@ -24501,7 +24585,24 @@
 <ItemSold AmountBalance="285907.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="455" Name="NG" NumberOfPacks="5" PreviousBalance="0" Rate="10" TotalPrice="6200.0" TransportAndMiscExpenses="1650" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="189422.0" AmountRecMode="" AmountReceived="0" BillNo="1881" Kilograms="179" Name="TNR" NumberOfPacks="2" PreviousBalance="0" Rate="10" TotalPrice="2020.0" TransportAndMiscExpenses="230" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="202335.0" AmountRecMode="" AmountReceived="0" BillNo="1882" Kilograms="541" Name="TA" NumberOfPacks="6" PreviousBalance="0" Rate="10" TotalPrice="6400.0" TransportAndMiscExpenses="990" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="81605.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="BRA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="84935.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="267" Name="BRA" NumberOfPacks="3" PreviousBalance="0" Rate="10" TotalPrice="3330.0" TransportAndMiscExpenses="660" UnderMember="RAMAIAH"/>
+</ItemsSold>
+</ItemBought>
+</Date>
+<Date Name="29/04/2018">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="51" RatePerKG="11" TotalInKGs="4587" UnloadingCharges="510" Vendor="JTM">
+<ItemsSold>
+<ItemSold AmountBalance="291523.0" AmountRecMode="" AmountReceived="0" BillNo="1883" Kilograms="468" Name="NG" NumberOfPacks="5" PreviousBalance="0" Rate="12" TotalPrice="5616.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="295857.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="274" Name="NG" NumberOfPacks="3" PreviousBalance="0" Rate="11" TotalPrice="4334.0" TransportAndMiscExpenses="1320" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="181282.0" AmountRecMode="ACC 17/1/2018" AmountReceived="50000" BillNo="1884" Kilograms="532" Name="FS" NumberOfPacks="6" PreviousBalance="0" Rate="12" TotalPrice="6384.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="189632.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="740" Name="FS" NumberOfPacks="8" PreviousBalance="0" Rate="11" TotalPrice="8350.0" TransportAndMiscExpenses="210" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="913403.0" AmountRecMode="" AmountReceived="0" BillNo="1885" Kilograms="897" Name="MGS" NumberOfPacks="10" PreviousBalance="0" Rate="12" TotalPrice="10914.0" TransportAndMiscExpenses="150" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="404174.0" AmountRecMode="" AmountReceived="0" BillNo="1886" Kilograms="445" Name="SJ" NumberOfPacks="5" PreviousBalance="0" Rate="11" TotalPrice="5720.0" TransportAndMiscExpenses="825" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="73180.0" AmountRecMode="" AmountReceived="0" BillNo="1887" Kilograms="348" Name="GA" NumberOfPacks="4" PreviousBalance="0" Rate="11" TotalPrice="4488.0" TransportAndMiscExpenses="660" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="193908.0" AmountRecMode="" AmountReceived="0" BillNo="1888" Kilograms="366" Name="TNR" NumberOfPacks="4" PreviousBalance="0" Rate="11" TotalPrice="4486.0" TransportAndMiscExpenses="460" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="923196.0" AmountRecMode="" AmountReceived="0" BillNo="1889" Kilograms="179" Name="TMRK" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="2199.0" TransportAndMiscExpenses="230" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="57249.0" AmountRecMode="" AmountReceived="0" BillNo="1890" Kilograms="178" Name="SLVT" NumberOfPacks="2" PreviousBalance="0" Rate="11" TotalPrice="1978.0" TransportAndMiscExpenses="20" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="438314.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="IS" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
