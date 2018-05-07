@@ -25237,7 +25237,7 @@
 </ItemBought>
 </Date>
 <Date Name="06/05/2018">
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="40" RatePerKG="0" TotalInKGs="0" UnloadingCharges="400" Vendor="HJB">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="40" RatePerKG="11" TotalInKGs="3641" UnloadingCharges="400" Vendor="HJB">
 <ItemsSold>
 <ItemSold AmountBalance="379408.0" AmountRecMode="" AmountReceived="0" BillNo="1953" Kilograms="93" Name="BM H" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1126.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="41119.0" AmountRecMode="" AmountReceived="0" BillNo="1954" Kilograms="100" Name="NHA" NumberOfPacks="1" PreviousBalance="0" Rate="12" TotalPrice="1210.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
@@ -25250,10 +25250,11 @@
 <ItemSold AmountBalance="340097.0" AmountRecMode="" AmountReceived="0" BillNo="1960" Kilograms="354" Name="SJ" NumberOfPacks="4" PreviousBalance="0" Rate="11" TotalPrice="4554.0" TransportAndMiscExpenses="660" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="80038.0" AmountRecMode="" AmountReceived="0" BillNo="1961" Kilograms="358" Name="GA" NumberOfPacks="4" PreviousBalance="0" Rate="11" TotalPrice="4598.0" TransportAndMiscExpenses="660" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="346136.0" AmountRecMode="" AmountReceived="0" BillNo="1962" Kilograms="341" Name="NG" NumberOfPacks="4" PreviousBalance="0" Rate="11" TotalPrice="3751.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="346136.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="NG" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="350399.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="259" Name="NG" NumberOfPacks="3" PreviousBalance="0" Rate="12" TotalPrice="4263.0" TransportAndMiscExpenses="1155" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="07/05/2018"/>
 </Dates>
 </Month>
 </Months>
