@@ -25414,7 +25414,7 @@
 </ItemBought>
 </Date>
 <Date Name="08/05/2018">
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="0" RatePerKG="0" TotalInKGs="0" UnloadingCharges="0" Vendor="SGS">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="82" RatePerKG="11" TotalInKGs="7456" UnloadingCharges="820" Vendor="SGS">
 <ItemsSold>
 <ItemSold AmountBalance="82505.0" AmountRecMode="" AmountReceived="0" BillNo="1971" Kilograms="504" Name="BRA" NumberOfPacks="6" PreviousBalance="0" Rate="12" TotalPrice="7038.0" TransportAndMiscExpenses="990" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="362093.0" AmountRecMode="" AmountReceived="0" BillNo="1972" Kilograms="526" Name="NG" NumberOfPacks="6" PreviousBalance="0" Rate="12" TotalPrice="6402.0" TransportAndMiscExpenses="90" UnderMember="RAMAIAH"/>
@@ -25428,10 +25428,11 @@
 <ItemSold AmountBalance="356243.0" AmountRecMode="" AmountReceived="0" BillNo="1980" Kilograms="1278" Name="SJ" NumberOfPacks="14" PreviousBalance="0" Rate="12" TotalPrice="16146.0" TransportAndMiscExpenses="810" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="36962.0" AmountRecMode="ACC 22/12/2017" AmountReceived="35530" BillNo="" Kilograms="0" Name="GKR" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="11272.0" AmountRecMode="ACC 29/12/2017" AmountReceived="36962" BillNo="1981" Kilograms="931" Name="GKR" NumberOfPacks="10" PreviousBalance="0" Rate="12" TotalPrice="11272.0" TransportAndMiscExpenses="100" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="987164.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="MGS" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="1004225.0" AmountRecMode="" AmountReceived="0" BillNo="1982" Kilograms="1403" Name="MGS" NumberOfPacks="15" PreviousBalance="0" Rate="12" TotalPrice="17061.0" TransportAndMiscExpenses="225" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="09/05/2018"/>
 </Dates>
 </Month>
 </Months>
