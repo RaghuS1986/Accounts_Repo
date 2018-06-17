@@ -29377,7 +29377,7 @@
 <ItemSold AmountBalance="218321.0" AmountRecMode="" AmountReceived="0" BillNo="2358" Kilograms="232" Name="TNR" NumberOfPacks="4" PreviousBalance="0" Rate="16" TotalPrice="3712.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
-<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="0" RatePerKG="0" TotalInKGs="0" UnloadingCharges="0" Vendor="SGS">
+<ItemBought Miscellaneous="0" Name="CARROT" NoOfPockets="45" RatePerKG="23" TotalInKGs="4060" UnloadingCharges="450" Vendor="SGS">
 <ItemsSold>
 <ItemSold AmountBalance="323799.0" AmountRecMode="CASH" AmountReceived="100000" BillNo="2359" Kilograms="954" Name="SJ" NumberOfPacks="10" PreviousBalance="0" Rate="24" TotalPrice="22896.0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="317609.0" AmountRecMode="" AmountReceived="0" BillNo="2360" Kilograms="447" Name="NG" NumberOfPacks="5" PreviousBalance="0" Rate="24" TotalPrice="11553.0" TransportAndMiscExpenses="825" UnderMember="RAMAIAH"/>
@@ -29390,10 +29390,11 @@
 <ItemSold AmountBalance="151519.0" AmountRecMode="" AmountReceived="0" BillNo="2366" Kilograms="355" Name="BRA" NumberOfPacks="4" PreviousBalance="0" Rate="23" TotalPrice="8825.0" TransportAndMiscExpenses="660" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="111817.0" AmountRecMode="" AmountReceived="0" BillNo="2367" Kilograms="364" Name="SLVT" NumberOfPacks="4" PreviousBalance="0" Rate="22" TotalPrice="8048.0" TransportAndMiscExpenses="40" UnderMember="RAMAIAH"/>
 <ItemSold AmountBalance="449711.0" AmountRecMode="" AmountReceived="0" BillNo="2368" Kilograms="169" Name="IS" NumberOfPacks="2" PreviousBalance="0" Rate="22" TotalPrice="3738.0" TransportAndMiscExpenses="20" UnderMember="RAMAIAH"/>
-<ItemSold AmountBalance="107879.0" AmountRecMode="" AmountReceived="0" BillNo="" Kilograms="0" Name="NHA" NumberOfPacks="0" PreviousBalance="0" Rate="0" TotalPrice="0" TransportAndMiscExpenses="0" UnderMember="RAMAIAH"/>
+<ItemSold AmountBalance="109869.0" AmountRecMode="" AmountReceived="0" BillNo="2369" Kilograms="90" Name="NHA" NumberOfPacks="1" PreviousBalance="0" Rate="22" TotalPrice="1990.0" TransportAndMiscExpenses="10" UnderMember="RAMAIAH"/>
 </ItemsSold>
 </ItemBought>
 </Date>
+<Date Name="17/06/2018"/>
 </Dates>
 </Month>
 </Months>
